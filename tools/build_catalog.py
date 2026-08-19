@@ -17,7 +17,7 @@ import sys
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from enrichment import ENRICHMENT, BROKEN_POSTERS  # noqa: E402
+from enrichment import ENRICHMENT, BROKEN_POSTERS, CERTIFICATIONS  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, "cinevault_catalog.json")
@@ -34,11 +34,15 @@ TITLE_FIXES = {
 
 # Field order in the emitted JSON, so diffs stay readable.
 FIELD_ORDER = [
-    "id", "title", "year", "rating", "runtime", "genre", "collection",
-    "director", "cast", "synopsis", "poster_url", "backdrop_url",
-    "youtube_url", "google_play_url", "trailer_key", "watched", "favorite",
-    "tags", "notes",
+    "id", "title", "year", "rating", "runtime", "certification", "genre",
+    "collection", "director", "cast", "synopsis", "poster_url",
+    "backdrop_url", "youtube_url", "google_play_url", "trailer_key",
+    "ownership", "added", "watched", "favorite", "tags", "notes",
 ]
+
+# The library records how each title was acquired as a free-form tag. Promote
+# that to a real field so it can be filtered on.
+OWNERSHIP_FROM_TAG = {"Purchased": "Purchased", "Rental History": "Rented"}
 
 
 def is_placeholder(url):
@@ -51,7 +55,7 @@ def build():
         movies = json.load(fh)
 
     out = []
-    for movie in movies:
+    for index, movie in enumerate(movies):
         m = dict(movie)
         m["title"] = TITLE_FIXES.get(m["title"], m["title"])
         m.update(ENRICHMENT.get(m["id"], {}))
@@ -70,6 +74,16 @@ def build():
         m.setdefault("cast", [])
         m.setdefault("tags", [])
         m.setdefault("trailer_key", None)
+        m["certification"] = CERTIFICATIONS.get(m["id"])
+
+        ownership = next(
+            (OWNERSHIP_FROM_TAG[t] for t in m["tags"] if t in OWNERSHIP_FROM_TAG), None
+        )
+        m["ownership"] = ownership
+
+        # Sort key for "recently added". Shipped titles keep their catalog
+        # order; titles added in the app stamp a timestamp instead.
+        m["added"] = index + 1
 
         ordered = {k: m[k] for k in FIELD_ORDER if k in m}
         ordered.update({k: v for k, v in m.items() if k not in ordered})
@@ -101,6 +115,8 @@ def build():
     print(f"{len(out)} titles written to cinevault_catalog.json and index.html")
     print(f"  {with_art} with TMDB artwork, {len(out) - with_art} using generated art")
     print(f"  {with_synopsis} with synopsis, {sum(1 for m in out if m.get('director'))} with director")
+    print(f"  {sum(1 for m in out if m.get('certification'))} rated, "
+          f"{sum(1 for m in out if m.get('ownership'))} with ownership")
 
 
 if __name__ == "__main__":

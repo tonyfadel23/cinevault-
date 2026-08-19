@@ -22,16 +22,26 @@ overwrite box). The key is stored in your browser and sent only to TMDB.
 
 ## 🛠 Features
 
-- Filter by category, genre, collection, decade and minimum rating, with active
-  filters shown as chips you can clear individually.
-- Poster grid or detail list view, both sortable six ways.
+- Filter by category, genre, collection and decade up front; audience, length,
+  ownership, tag and minimum rating behind **More filters**. Everything applied
+  shows as a chip you can clear individually, and the panel opens itself if a
+  filter hidden inside it is active.
+- Sort by rating, year, title, runtime or date added, in either direction, with
+  ties always broken alphabetically so the order never shuffles.
+- Titles are categorised by certification (G / PG / PG-13 / R), which drives an
+  audience filter — Kids, Family, Teens & up, Grown-ups — and decides what
+  counts as a family night pick.
+- Purchases and rentals are a real field, not just a tag, so you can filter by
+  what you own outright.
+- Poster grid or detail list view.
 - Search across titles, directors, cast, collections, synopses and your tags.
 - Movie Roulette ("Pick For Me") that respects the filters you have applied.
 - One-click launch to YouTube or Google Play / TV, plus trailer playback.
 - Per-title favourites, watched state, custom tags and personal notes.
 - Library stats: how much you have watched and how many hours of backlog remain.
 - Import / export the whole catalog as JSON, merging or replacing.
-- Keyboard shortcuts: `/` search, `R` roulette, `V` view, `C` clear, `?` help.
+- Keyboard shortcuts: `/` search, `R` roulette, `V` view, `F` filters, `C` clear,
+  `?` help.
 
 ## 📚 Editing the catalog
 
@@ -43,9 +53,9 @@ sync with the build script rather than editing `index.html` by hand:
 python3 tools/build_catalog.py
 ```
 
-Editorial metadata (director, cast, synopsis, franchise) lives in
-`tools/enrichment.py`; the script merges it into the catalog, regenerates the
-launch URLs and writes both copies.
+Editorial metadata (director, cast, synopsis, franchise, certification) lives in
+`tools/enrichment.py`; the script merges it into the catalog, derives ownership
+from the acquisition tags, regenerates the launch URLs and writes both copies.
 
 ## 🚀 Deploying to Vercel
 

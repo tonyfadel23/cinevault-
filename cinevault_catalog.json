@@ -5,6 +5,7 @@
     "year": "2024",
     "rating": 7.2,
     "runtime": 98,
+    "certification": null,
     "genre": [
       "Sci-Fi",
       "Mystery"
@@ -15,6 +16,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Disclosure%20Day+movie",
     "google_play_url": "https://play.google.com/store/search?q=Disclosure%20Day&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 1,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -28,6 +31,7 @@
     "year": "2024",
     "rating": 6.8,
     "runtime": 95,
+    "certification": null,
     "genre": [
       "Horror",
       "Mystery",
@@ -39,6 +43,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Backrooms+movie",
     "google_play_url": "https://play.google.com/store/search?q=Backrooms&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 2,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -52,6 +58,7 @@
     "year": "2025",
     "rating": 7.1,
     "runtime": 115,
+    "certification": "R",
     "genre": [
       "Action",
       "Fantasy",
@@ -71,6 +78,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Mortal%20Kombat%20II+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mortal%20Kombat%20II&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 3,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -84,6 +93,7 @@
     "year": "2021",
     "rating": 6.8,
     "runtime": 115,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Comedy",
@@ -103,6 +113,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Space%20Jam%3A%20A%20New%20Legacy+movie",
     "google_play_url": "https://play.google.com/store/search?q=Space%20Jam%3A%20A%20New%20Legacy&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 4,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -118,6 +130,7 @@
     "year": "2025",
     "rating": 8.0,
     "runtime": 135,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Sci-Fi",
@@ -137,6 +150,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Superman+movie",
     "google_play_url": "https://play.google.com/store/search?q=Superman&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 5,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -151,6 +166,7 @@
     "year": "2023",
     "rating": 7.7,
     "runtime": 163,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Thriller",
@@ -170,6 +186,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Mission%3A%20Impossible%20-%20Dead%20Reckoning+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mission%3A%20Impossible%20-%20Dead%20Reckoning&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 6,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -184,6 +202,7 @@
     "year": "2024",
     "rating": 7.0,
     "runtime": 120,
+    "certification": "R",
     "genre": [
       "Action",
       "War",
@@ -202,6 +221,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Ministry%20of%20Ungentlemanly%20Warfare+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Ministry%20of%20Ungentlemanly%20Warfare&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 7,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -215,6 +236,7 @@
     "year": "2024",
     "rating": 6.5,
     "runtime": 105,
+    "certification": "PG-13",
     "genre": [
       "Thriller",
       "Crime",
@@ -233,6 +255,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Trap+movie",
     "google_play_url": "https://play.google.com/store/search?q=Trap&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 8,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -246,6 +270,7 @@
     "year": "2020",
     "rating": 6.8,
     "runtime": 94,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Comedy",
@@ -265,6 +290,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=SCOOB%21+movie",
     "google_play_url": "https://play.google.com/store/search?q=SCOOB%21&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 9,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -280,6 +307,7 @@
     "year": "2020",
     "rating": 7.5,
     "runtime": 150,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Sci-Fi",
@@ -298,6 +326,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Tenet+movie",
     "google_play_url": "https://play.google.com/store/search?q=Tenet&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 10,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -312,6 +342,7 @@
     "year": "2020",
     "rating": 6.7,
     "runtime": 115,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -330,6 +361,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Mulan+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mulan&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 11,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -343,6 +376,7 @@
     "year": "2019",
     "rating": 7.0,
     "runtime": 123,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -363,6 +397,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Jumanji%3A%20The%20Next%20Level+movie",
     "google_play_url": "https://play.google.com/store/search?q=Jumanji%3A%20The%20Next%20Level&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 12,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -378,6 +414,7 @@
     "year": "2013",
     "rating": 5.8,
     "runtime": 105,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -397,6 +434,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Smurfs%202+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Smurfs%202&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 13,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -412,6 +451,7 @@
     "year": "2020",
     "rating": 7.0,
     "runtime": 99,
+    "certification": "PG",
     "genre": [
       "Action",
       "Adventure",
@@ -432,6 +472,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Sonic%20the%20Hedgehog+movie",
     "google_play_url": "https://play.google.com/store/search?q=Sonic%20the%20Hedgehog&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 14,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -447,6 +489,7 @@
     "year": "2020",
     "rating": 6.8,
     "runtime": 90,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -467,6 +510,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Trolls%20World%20Tour+movie",
     "google_play_url": "https://play.google.com/store/search?q=Trolls%20World%20Tour&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 15,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -482,6 +527,7 @@
     "year": "2020",
     "rating": 7.7,
     "runtime": 102,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -501,6 +547,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Onward+movie",
     "google_play_url": "https://play.google.com/store/search?q=Onward&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 16,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -517,6 +565,7 @@
     "year": "2019",
     "rating": 6.5,
     "runtime": 102,
+    "certification": "PG",
     "genre": [
       "Adventure",
       "Family",
@@ -535,6 +584,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Dora%20and%20the%20Lost%20City%20of%20Gold+movie",
     "google_play_url": "https://play.google.com/store/search?q=Dora%20and%20the%20Lost%20City%20of%20Gold&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 17,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -550,6 +601,7 @@
     "year": "2013",
     "rating": 6.7,
     "runtime": 102,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Adventure",
@@ -568,6 +620,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Epic+movie",
     "google_play_url": "https://play.google.com/store/search?q=Epic&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 18,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -583,6 +637,7 @@
     "year": "2003",
     "rating": 7.2,
     "runtime": 109,
+    "certification": "PG-13",
     "genre": [
       "Comedy",
       "Music"
@@ -600,6 +655,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=School%20of%20Rock+movie",
     "google_play_url": "https://play.google.com/store/search?q=School%20of%20Rock&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 19,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -613,6 +670,7 @@
     "year": "2017",
     "rating": 6.1,
     "runtime": 99,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -632,6 +690,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=My%20Little%20Pony%3A%20The%20Movie+movie",
     "google_play_url": "https://play.google.com/store/search?q=My%20Little%20Pony%3A%20The%20Movie&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 20,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -647,6 +707,7 @@
     "year": "2015",
     "rating": 7.8,
     "runtime": 138,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -666,6 +727,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Force%20Awakens+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Force%20Awakens&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 21,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -680,6 +743,7 @@
     "year": "2017",
     "rating": 7.1,
     "runtime": 152,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -699,6 +763,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Last%20Jedi+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Last%20Jedi&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 22,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -712,6 +778,7 @@
     "year": "2019",
     "rating": 6.5,
     "runtime": 142,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -731,6 +798,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Rise%20of%20Skywalker+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Rise%20of%20Skywalker&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 23,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -744,6 +813,7 @@
     "year": "2019",
     "rating": 6.8,
     "runtime": 102,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Action",
@@ -763,6 +833,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Spies%20in%20Disguise+movie",
     "google_play_url": "https://play.google.com/store/search?q=Spies%20in%20Disguise&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 24,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -778,6 +850,7 @@
     "year": "2016",
     "rating": 6.4,
     "runtime": 117,
+    "certification": "PG",
     "genre": [
       "Adventure",
       "Family",
@@ -796,6 +869,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20BFG+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20BFG&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 25,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -811,6 +886,7 @@
     "year": "2016",
     "rating": 5.6,
     "runtime": 94,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Action",
@@ -830,6 +906,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Ratchet%20%26%20Clank+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ratchet%20%26%20Clank&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 26,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -845,6 +923,7 @@
     "year": "2019",
     "rating": 8.4,
     "runtime": 122,
+    "certification": "R",
     "genre": [
       "Crime",
       "Drama",
@@ -864,6 +943,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Joker+movie",
     "google_play_url": "https://play.google.com/store/search?q=Joker&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 27,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -878,6 +959,7 @@
     "year": "2019",
     "rating": 6.5,
     "runtime": 137,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -897,6 +979,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw+movie",
     "google_play_url": "https://play.google.com/store/search?q=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 28,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -910,6 +994,7 @@
     "year": "1994",
     "rating": 8.3,
     "runtime": 89,
+    "certification": "G",
     "genre": [
       "Animation",
       "Family",
@@ -928,6 +1013,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Lion%20King+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lion%20King&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 29,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -944,6 +1031,7 @@
     "year": "2019",
     "rating": 7.5,
     "runtime": 129,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -963,6 +1051,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Spider-Man%3A%20Far%20from%20Home+movie",
     "google_play_url": "https://play.google.com/store/search?q=Spider-Man%3A%20Far%20from%20Home&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 30,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -977,6 +1067,7 @@
     "year": "2019",
     "rating": 7.0,
     "runtime": 128,
+    "certification": "PG",
     "genre": [
       "Adventure",
       "Fantasy",
@@ -995,6 +1086,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Aladdin+movie",
     "google_play_url": "https://play.google.com/store/search?q=Aladdin&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 31,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1010,6 +1103,7 @@
     "year": "2016",
     "rating": 5.7,
     "runtime": 94,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -1029,6 +1123,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%3A%20Collision%20Course+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ice%20Age%3A%20Collision%20Course&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 32,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1044,6 +1140,7 @@
     "year": "2019",
     "rating": 7.4,
     "runtime": 131,
+    "certification": "R",
     "genre": [
       "Action",
       "Crime",
@@ -1063,6 +1160,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=John%20Wick%3A%20Chapter%203%20-%20Parabellum+movie",
     "google_play_url": "https://play.google.com/store/search?q=John%20Wick%3A%20Chapter%203%20-%20Parabellum&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 33,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1076,6 +1175,7 @@
     "year": "2002",
     "rating": 7.5,
     "runtime": 81,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -1095,6 +1195,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ice%20Age&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 34,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1111,6 +1213,7 @@
     "year": "2019",
     "rating": 6.6,
     "runtime": 104,
+    "certification": "PG",
     "genre": [
       "Action",
       "Adventure",
@@ -1131,6 +1234,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Pok%C3%A9mon%20Detective%20Pikachu+movie",
     "google_play_url": "https://play.google.com/store/search?q=Pok%C3%A9mon%20Detective%20Pikachu&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 35,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1146,6 +1251,7 @@
     "year": "2019",
     "rating": 6.7,
     "runtime": 129,
+    "certification": "PG-13",
     "genre": [
       "Thriller",
       "Drama",
@@ -1165,6 +1271,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Glass+movie",
     "google_play_url": "https://play.google.com/store/search?q=Glass&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 36,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1178,6 +1286,7 @@
     "year": "2018",
     "rating": 8.4,
     "runtime": 149,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1197,6 +1306,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Avengers%3A%20Infinity%20War+movie",
     "google_play_url": "https://play.google.com/store/search?q=Avengers%3A%20Infinity%20War&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 37,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1211,6 +1322,7 @@
     "year": "2018",
     "rating": 6.9,
     "runtime": 143,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1230,6 +1342,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Aquaman+movie",
     "google_play_url": "https://play.google.com/store/search?q=Aquaman&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 38,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1243,6 +1357,7 @@
     "year": "2018",
     "rating": 6.7,
     "runtime": 130,
+    "certification": "PG",
     "genre": [
       "Family",
       "Comedy",
@@ -1263,6 +1378,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Mary%20Poppins%20Returns+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mary%20Poppins%20Returns&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 39,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1278,6 +1395,7 @@
     "year": "2018",
     "rating": 7.0,
     "runtime": 112,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -1297,6 +1415,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Ralph%20Breaks%20the%20Internet+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ralph%20Breaks%20the%20Internet&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 40,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1312,6 +1432,7 @@
     "year": "2014",
     "rating": 7.8,
     "runtime": 102,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Action",
@@ -1332,6 +1453,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=How%20to%20Train%20Your%20Dragon%202+movie",
     "google_play_url": "https://play.google.com/store/search?q=How%20to%20Train%20Your%20Dragon%202&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 41,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1348,6 +1471,7 @@
     "year": "2018",
     "rating": 6.7,
     "runtime": 112,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Sci-Fi"
@@ -1366,6 +1490,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Venom+movie",
     "google_play_url": "https://play.google.com/store/search?q=Venom&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 42,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1379,6 +1505,7 @@
     "year": "2017",
     "rating": 7.6,
     "runtime": 105,
+    "certification": "PG",
     "genre": [
       "Drama",
       "Music",
@@ -1397,6 +1524,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Greatest%20Showman+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Greatest%20Showman&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 43,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1411,6 +1540,7 @@
     "year": "1988",
     "rating": 8.2,
     "runtime": 132,
+    "certification": "R",
     "genre": [
       "Action",
       "Thriller"
@@ -1429,6 +1559,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Die%20Hard+movie",
     "google_play_url": "https://play.google.com/store/search?q=Die%20Hard&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 44,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1443,6 +1575,7 @@
     "year": "2001",
     "rating": 8.8,
     "runtime": 178,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1462,6 +1595,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 45,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1476,6 +1611,7 @@
     "year": "2002",
     "rating": 8.7,
     "runtime": 179,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1495,6 +1631,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 46,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1509,6 +1647,7 @@
     "year": "2003",
     "rating": 9.0,
     "runtime": 201,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1528,6 +1667,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 47,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1542,6 +1683,7 @@
     "year": "2016",
     "rating": 6.8,
     "runtime": 89,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -1560,6 +1702,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Leap%21+movie",
     "google_play_url": "https://play.google.com/store/search?q=Leap%21&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 48,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1575,6 +1719,7 @@
     "year": "2018",
     "rating": 5.2,
     "runtime": 86,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Comedy",
@@ -1594,6 +1739,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Sherlock%20Gnomes+movie",
     "google_play_url": "https://play.google.com/store/search?q=Sherlock%20Gnomes&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 49,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1609,6 +1756,7 @@
     "year": "2018",
     "rating": 7.5,
     "runtime": 140,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Sci-Fi",
@@ -1627,6 +1775,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Ready%20Player%20One+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ready%20Player%20One&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 50,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1641,6 +1791,7 @@
     "year": "2011",
     "rating": 7.2,
     "runtime": 63,
+    "certification": "G",
     "genre": [
       "Animation",
       "Family",
@@ -1660,6 +1811,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Winnie%20the%20Pooh+movie",
     "google_play_url": "https://play.google.com/store/search?q=Winnie%20the%20Pooh&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 51,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1675,6 +1828,7 @@
     "year": "2012",
     "rating": 6.7,
     "runtime": 88,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Adventure",
@@ -1694,6 +1848,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Pirates%21%20Band%20of%20Misfits+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Pirates%21%20Band%20of%20Misfits&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 52,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1709,6 +1865,7 @@
     "year": "2001",
     "rating": 7.9,
     "runtime": 90,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Comedy",
@@ -1729,6 +1886,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Shrek+movie",
     "google_play_url": "https://play.google.com/store/search?q=Shrek&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 53,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1745,6 +1904,7 @@
     "year": "2017",
     "rating": 6.5,
     "runtime": 22,
+    "certification": "PG",
     "genre": [
       "Animation",
       "Family",
@@ -1764,6 +1924,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Olaf%27s%20Frozen%20Adventure+movie",
     "google_play_url": "https://play.google.com/store/search?q=Olaf%27s%20Frozen%20Adventure&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 54,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1779,6 +1941,7 @@
     "year": "2015",
     "rating": 6.8,
     "runtime": 8,
+    "certification": "G",
     "genre": [
       "Animation",
       "Family",
@@ -1798,6 +1961,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Frozen%20Fever+movie",
     "google_play_url": "https://play.google.com/store/search?q=Frozen%20Fever&c=movies",
     "trailer_key": null,
+    "ownership": "Purchased",
+    "added": 55,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1813,6 +1978,7 @@
     "year": "2018",
     "rating": 7.3,
     "runtime": 134,
+    "certification": "PG-13",
     "genre": [
       "Action",
       "Adventure",
@@ -1832,6 +1998,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=Black%20Panther+movie",
     "google_play_url": "https://play.google.com/store/search?q=Black%20Panther&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 56,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1845,6 +2013,7 @@
     "year": "2015",
     "rating": 8.0,
     "runtime": 144,
+    "certification": "PG-13",
     "genre": [
       "Sci-Fi",
       "Drama",
@@ -1863,6 +2032,8 @@
     "youtube_url": "https://www.youtube.com/results?search_query=The%20Martian+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Martian&c=movies",
     "trailer_key": null,
+    "ownership": "Rented",
+    "added": 57,
     "watched": true,
     "favorite": true,
     "tags": [
