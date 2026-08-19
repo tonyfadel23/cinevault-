@@ -1,0 +1,326 @@
+"""Editorial metadata for the CineVault catalog.
+
+Keyed by catalog id. Every entry is optional -- titles we have no reliable
+information for are simply left out, and the app falls back to the TMDB
+enrichment flow (Settings -> TMDB API key) to fill them in.
+"""
+
+ENRICHMENT = {
+    "tony_mov_3": {
+        "director": "Simon McQuoid",
+        "cast": ["Karl Urban", "Adeline Rudolph", "Lewis Tan", "Jessica McNamee"],
+        "collection": "Mortal Kombat",
+        "synopsis": "Earthrealm's champions are drawn back into the tournament as Johnny Cage joins the fight against Outworld.",
+    },
+    "tony_mov_4": {
+        "director": "Malcolm D. Lee",
+        "cast": ["LeBron James", "Don Cheadle", "Cedric Joe", "Khris Davis"],
+        "collection": "Space Jam",
+        "synopsis": "A rogue AI traps LeBron James and his son inside a digital world, and only a basketball game alongside the Tune Squad can win their way out.",
+    },
+    "tony_mov_5": {
+        "director": "James Gunn",
+        "cast": ["David Corenswet", "Rachel Brosnahan", "Nicholas Hoult", "Edi Gathegi"],
+        "collection": "DC Universe",
+        "synopsis": "Superman balances his Kryptonian heritage against his human upbringing while Lex Luthor turns the world against him.",
+    },
+    "tony_mov_6": {
+        "director": "Christopher McQuarrie",
+        "cast": ["Tom Cruise", "Hayley Atwell", "Ving Rhames", "Simon Pegg"],
+        "collection": "Mission: Impossible",
+        "synopsis": "Ethan Hunt and the IMF race the world's governments to a weapon that threatens all of humanity.",
+    },
+    "tony_mov_7": {
+        "director": "Guy Ritchie",
+        "cast": ["Henry Cavill", "Alan Ritchson", "Eiza Gonzalez", "Henry Golding"],
+        "synopsis": "A hand-picked band of misfit commandos runs an unsanctioned mission behind enemy lines in the Second World War.",
+    },
+    "tony_mov_8": {
+        "director": "M. Night Shyamalan",
+        "cast": ["Josh Hartnett", "Ariel Donoghue", "Saleka Shyamalan", "Alison Pill"],
+        "synopsis": "A father takes his daughter to a sold-out pop concert and realises the venue is a police trap closing in on a serial killer.",
+    },
+    "tony_mov_9": {
+        "director": "Tony Cervone",
+        "cast": ["Will Forte", "Zac Efron", "Amanda Seyfried", "Gina Rodriguez"],
+        "collection": "Scooby-Doo",
+        "synopsis": "Scooby and the Mystery Inc. gang take on their biggest case yet, one that reveals Scooby's heroic destiny.",
+    },
+    "tony_mov_10": {
+        "director": "Christopher Nolan",
+        "cast": ["John David Washington", "Robert Pattinson", "Elizabeth Debicki", "Kenneth Branagh"],
+        "synopsis": "Armed with a single word, a secret agent moves through a twilight world of espionage on a mission that unfolds beyond real time.",
+    },
+    "tony_mov_11": {
+        "director": "Niki Caro",
+        "cast": ["Liu Yifei", "Donnie Yen", "Jet Li", "Gong Li"],
+        "synopsis": "A young woman disguises herself as a man to take her ailing father's place in the imperial army.",
+    },
+    "tony_mov_12": {
+        "director": "Jake Kasdan",
+        "cast": ["Dwayne Johnson", "Kevin Hart", "Jack Black", "Karen Gillan"],
+        "collection": "Jumanji",
+        "synopsis": "The friends return to Jumanji to rescue one of their own, only to find the game has changed and the avatars are scrambled.",
+    },
+    "tony_mov_13": {
+        "director": "Raja Gosnell",
+        "cast": ["Neil Patrick Harris", "Hank Azaria", "Katy Perry", "Brendan Gleeson"],
+        "collection": "The Smurfs",
+        "synopsis": "Gargamel creates a pair of mischievous creatures to harness Smurf magic, and kidnaps Smurfette to learn the secret.",
+    },
+    "tony_mov_14": {
+        "director": "Jeff Fowler",
+        "cast": ["Ben Schwartz", "James Marsden", "Jim Carrey", "Tika Sumpter"],
+        "collection": "Sonic the Hedgehog",
+        "synopsis": "A blue hedgehog with super speed teams up with a small-town sheriff to stay ahead of the mad Dr. Robotnik.",
+    },
+    "tony_mov_15": {
+        "director": "Walt Dohrn",
+        "cast": ["Anna Kendrick", "Justin Timberlake", "Rachel Bloom", "Kelly Clarkson"],
+        "collection": "Trolls",
+        "synopsis": "Poppy and Branch discover their world is only one of six troll tribes, each devoted to a different kind of music.",
+    },
+    "tony_mov_16": {
+        "director": "Dan Scanlon",
+        "cast": ["Tom Holland", "Chris Pratt", "Julia Louis-Dreyfus", "Octavia Spencer"],
+        "synopsis": "Two elf brothers set out on a quest to spend one last day with the father they lost.",
+    },
+    "tony_mov_17": {
+        "director": "James Bobin",
+        "cast": ["Isabela Merced", "Eugenio Derbez", "Michael Pena", "Eva Longoria"],
+        "synopsis": "A teenage explorer leads her friends through the jungle to rescue her parents and solve the mystery of a lost Inca city.",
+    },
+    "tony_mov_18": {
+        "director": "Chris Wedge",
+        "cast": ["Amanda Seyfried", "Josh Hutcherson", "Colin Farrell", "Beyonce Knowles"],
+        "synopsis": "A teenager is shrunk into a hidden forest world and joins its tiny warriors in a battle to save it.",
+    },
+    "tony_mov_19": {
+        "director": "Richard Linklater",
+        "cast": ["Jack Black", "Joan Cusack", "Mike White", "Sarah Silverman"],
+        "synopsis": "A broke guitarist fakes his way into a substitute teaching job and turns a class of straight-A students into a rock band.",
+    },
+    "tony_mov_20": {
+        "director": "Jayson Thiessen",
+        "cast": ["Tara Strong", "Emily Blunt", "Kristin Chenoweth", "Liev Schreiber"],
+        "collection": "My Little Pony",
+        "synopsis": "When a dark force conquers Canterlot, the Mane 6 journey beyond Equestria to find the magic that can save their home.",
+    },
+    "tony_mov_21": {
+        "director": "J.J. Abrams",
+        "cast": ["Daisy Ridley", "John Boyega", "Harrison Ford", "Adam Driver"],
+        "collection": "Star Wars",
+        "synopsis": "Three decades after the Empire's fall, a scavenger and a runaway stormtrooper are swept into the fight against the First Order.",
+    },
+    "tony_mov_22": {
+        "director": "Rian Johnson",
+        "cast": ["Mark Hamill", "Daisy Ridley", "Adam Driver", "Carrie Fisher"],
+        "collection": "Star Wars",
+        "synopsis": "Rey seeks out a reluctant Luke Skywalker for training while the Resistance runs for its life from the First Order fleet.",
+    },
+    "tony_mov_23": {
+        "director": "J.J. Abrams",
+        "cast": ["Daisy Ridley", "Adam Driver", "Oscar Isaac", "John Boyega"],
+        "collection": "Star Wars",
+        "synopsis": "The surviving Resistance makes a final stand as Rey confronts the truth of who she is.",
+    },
+    "tony_mov_24": {
+        "director": "Nick Bruno",
+        "cast": ["Will Smith", "Tom Holland", "Rashida Jones", "Karen Gillan"],
+        "synopsis": "The world's suavest super-spy is accidentally turned into a pigeon, and has to rely on a young gadget inventor to save the day.",
+    },
+    "tony_mov_25": {
+        "director": "Steven Spielberg",
+        "cast": ["Mark Rylance", "Ruby Barnhill", "Penelope Wilton", "Jemaine Clement"],
+        "synopsis": "An orphan girl befriends a gentle giant and together they take on the man-eating giants of Giant Country.",
+    },
+    "tony_mov_26": {
+        "director": "Kevin Munroe",
+        "cast": ["James Arnold Taylor", "David Kaye", "Paul Giamatti", "John Goodman"],
+        "synopsis": "A small-town mechanic and a defective warbot join the galaxy's defenders to stop a planet-destroying weapon.",
+    },
+    "tony_mov_27": {
+        "director": "Todd Phillips",
+        "cast": ["Joaquin Phoenix", "Robert De Niro", "Zazie Beetz", "Frances Conroy"],
+        "collection": "DC Universe",
+        "synopsis": "A failed comedian in a decaying Gotham drifts toward the violence that will make him the Joker.",
+    },
+    "tony_mov_28": {
+        "director": "David Leitch",
+        "cast": ["Dwayne Johnson", "Jason Statham", "Idris Elba", "Vanessa Kirby"],
+        "collection": "Fast & Furious",
+        "synopsis": "A lawman and an outcast who cannot stand each other are forced to team up against a genetically enhanced soldier.",
+    },
+    "tony_mov_29": {
+        "director": "Roger Allers",
+        "cast": ["Matthew Broderick", "James Earl Jones", "Jeremy Irons", "Nathan Lane"],
+        "synopsis": "A young lion prince flees his kingdom after his father's death, and must one day return to claim his place.",
+    },
+    "tony_mov_30": {
+        "director": "Jon Watts",
+        "cast": ["Tom Holland", "Jake Gyllenhaal", "Zendaya", "Samuel L. Jackson"],
+        "collection": "Marvel Cinematic Universe",
+        "synopsis": "Peter Parker's school trip across Europe is hijacked by Nick Fury and a threat from another dimension.",
+    },
+    "tony_mov_31": {
+        "director": "Guy Ritchie",
+        "cast": ["Mena Massoud", "Naomi Scott", "Will Smith", "Marwan Kenzari"],
+        "synopsis": "A street thief finds a lamp holding a wisecracking Genie, and wishes his way into the palace of Agrabah.",
+    },
+    "tony_mov_32": {
+        "director": "Mike Thurmeier",
+        "cast": ["Ray Romano", "John Leguizamo", "Denis Leary", "Simon Pegg"],
+        "collection": "Ice Age",
+        "synopsis": "Scrat's antics in space send an asteroid toward Earth, and the herd has to find a way to survive it.",
+    },
+    "tony_mov_33": {
+        "director": "Chad Stahelski",
+        "cast": ["Keanu Reeves", "Halle Berry", "Ian McShane", "Laurence Fishburne"],
+        "collection": "John Wick",
+        "synopsis": "Excommunicado and hunted by every assassin in the city, John Wick fights to stay alive long enough to find a way out.",
+    },
+    "tony_mov_34": {
+        "director": "Chris Wedge",
+        "cast": ["Ray Romano", "John Leguizamo", "Denis Leary", "Goran Visnjic"],
+        "collection": "Ice Age",
+        "synopsis": "A mammoth, a sloth and a sabre-tooth tiger form an unlikely herd to return a lost human baby to his family.",
+    },
+    "tony_mov_35": {
+        "director": "Rob Letterman",
+        "cast": ["Ryan Reynolds", "Justice Smith", "Kathryn Newton", "Bill Nighy"],
+        "collection": "Pokemon",
+        "synopsis": "A young man teams up with a talking Pikachu detective to investigate his father's disappearance in Ryme City.",
+    },
+    "tony_mov_36": {
+        "director": "M. Night Shyamalan",
+        "cast": ["James McAvoy", "Bruce Willis", "Samuel L. Jackson", "Sarah Paulson"],
+        "collection": "Eastrail 177",
+        "synopsis": "Three men with extraordinary abilities are held in the same institution by a doctor who insists their powers are a delusion.",
+    },
+    "tony_mov_37": {
+        "director": "Anthony Russo",
+        "cast": ["Robert Downey Jr.", "Chris Hemsworth", "Josh Brolin", "Chris Evans"],
+        "collection": "Marvel Cinematic Universe",
+        "synopsis": "The Avengers and their allies make a desperate stand as Thanos closes in on the six Infinity Stones.",
+    },
+    "tony_mov_38": {
+        "director": "James Wan",
+        "cast": ["Jason Momoa", "Amber Heard", "Patrick Wilson", "Nicole Kidman"],
+        "collection": "DC Universe",
+        "synopsis": "The half-human heir to Atlantis must claim the lost trident to stop a war between the ocean and the surface world.",
+    },
+    "tony_mov_39": {
+        "director": "Rob Marshall",
+        "cast": ["Emily Blunt", "Lin-Manuel Miranda", "Ben Whishaw", "Emily Mortimer"],
+        "collection": "Mary Poppins",
+        "synopsis": "A grown-up Jane and Michael Banks are visited once more by the magical nanny during a season of loss.",
+    },
+    "tony_mov_40": {
+        "director": "Rich Moore",
+        "cast": ["John C. Reilly", "Sarah Silverman", "Gal Gadot", "Taraji P. Henson"],
+        "collection": "Wreck-It Ralph",
+        "synopsis": "Ralph and Vanellope leave the arcade for the internet to find a part that can save her game.",
+    },
+    "tony_mov_41": {
+        "director": "Dean DeBlois",
+        "cast": ["Jay Baruchel", "Cate Blanchett", "Gerard Butler", "America Ferrera"],
+        "collection": "How to Train Your Dragon",
+        "synopsis": "Hiccup and Toothless discover a hidden world of dragons, and a conqueror who wants them all.",
+    },
+    "tony_mov_42": {
+        "director": "Ruben Fleischer",
+        "cast": ["Tom Hardy", "Michelle Williams", "Riz Ahmed", "Jenny Slate"],
+        "collection": "Sony Spider-Man Universe",
+        "synopsis": "An investigative journalist is bonded to an alien symbiote with a will, an appetite and a voice of its own.",
+    },
+    "tony_mov_43": {
+        "director": "Michael Gracey",
+        "cast": ["Hugh Jackman", "Zac Efron", "Zendaya", "Michelle Williams"],
+        "synopsis": "A showman builds a spectacle out of the people the world overlooked, and nearly loses everything chasing acclaim.",
+    },
+    "tony_mov_44": {
+        "director": "John McTiernan",
+        "cast": ["Bruce Willis", "Alan Rickman", "Bonnie Bedelia", "Reginald VelJohnson"],
+        "collection": "Die Hard",
+        "synopsis": "An off-duty cop is the only thing standing between a Los Angeles high-rise of hostages and the thieves who took it.",
+    },
+    "tony_mov_45": {
+        "director": "Peter Jackson",
+        "cast": ["Elijah Wood", "Ian McKellen", "Viggo Mortensen", "Sean Astin"],
+        "collection": "The Lord of the Rings",
+        "synopsis": "A hobbit inherits a ring of terrible power and sets out with eight companions to destroy it.",
+    },
+    "tony_mov_46": {
+        "director": "Peter Jackson",
+        "cast": ["Elijah Wood", "Ian McKellen", "Viggo Mortensen", "Andy Serkis"],
+        "collection": "The Lord of the Rings",
+        "synopsis": "The broken fellowship fights on separate fronts as Frodo and Sam press toward Mordor with a treacherous guide.",
+    },
+    "tony_mov_47": {
+        "director": "Peter Jackson",
+        "cast": ["Elijah Wood", "Ian McKellen", "Viggo Mortensen", "Sean Astin"],
+        "collection": "The Lord of the Rings",
+        "synopsis": "Armies gather before the gates of Mordor to buy Frodo the time he needs to reach Mount Doom.",
+    },
+    "tony_mov_48": {
+        "director": "Eric Summer",
+        "cast": ["Elle Fanning", "Dane DeHaan", "Carly Rae Jepsen", "Maddie Ziegler"],
+        "synopsis": "An orphan girl runs away to Paris and talks her way into the Opera ballet school to chase her dream of dancing.",
+    },
+    "tony_mov_49": {
+        "director": "John Stevenson",
+        "cast": ["Johnny Depp", "James McAvoy", "Emily Blunt", "Chiwetel Ejiofor"],
+        "collection": "Gnomeo & Juliet",
+        "synopsis": "London's garden gnomes start disappearing, and it takes the city's greatest ornamental detective to find them.",
+    },
+    "tony_mov_50": {
+        "director": "Steven Spielberg",
+        "cast": ["Tye Sheridan", "Olivia Cooke", "Ben Mendelsohn", "Mark Rylance"],
+        "synopsis": "In a bleak 2045, players hunt for a hidden fortune inside a vast virtual world before a corporation can claim it.",
+    },
+    "tony_mov_51": {
+        "director": "Stephen J. Anderson",
+        "cast": ["Jim Cummings", "Craig Ferguson", "Tom Kenny", "John Cleese"],
+        "collection": "Winnie the Pooh",
+        "synopsis": "Pooh sets out to find Eeyore a new tail, and the Hundred Acre Wood convinces itself a monster is on the loose.",
+    },
+    "tony_mov_52": {
+        "director": "Peter Lord",
+        "cast": ["Hugh Grant", "Martin Freeman", "Imelda Staunton", "David Tennant"],
+        "synopsis": "A hopeless pirate captain chases the Pirate of the Year award and ends up entangled with Charles Darwin.",
+    },
+    "tony_mov_53": {
+        "director": "Andrew Adamson",
+        "cast": ["Mike Myers", "Eddie Murphy", "Cameron Diaz", "John Lithgow"],
+        "collection": "Shrek",
+        "synopsis": "A grumpy ogre strikes a bargain to rescue a princess so he can get his swamp back to himself.",
+    },
+    "tony_mov_54": {
+        "director": "Kevin Deters",
+        "cast": ["Josh Gad", "Kristen Bell", "Idina Menzel", "Jonathan Groff"],
+        "collection": "Frozen",
+        "synopsis": "Olaf goes door to door through Arendelle collecting holiday traditions for Anna and Elsa.",
+    },
+    "tony_mov_55": {
+        "director": "Chris Buck",
+        "cast": ["Kristen Bell", "Idina Menzel", "Josh Gad", "Jonathan Groff"],
+        "collection": "Frozen",
+        "synopsis": "Elsa throws Anna the perfect birthday party while fighting off a cold that keeps sneezing snowmen into the world.",
+    },
+    "tony_mov_56": {
+        "director": "Ryan Coogler",
+        "cast": ["Chadwick Boseman", "Michael B. Jordan", "Lupita Nyong'o", "Danai Gurira"],
+        "collection": "Marvel Cinematic Universe",
+        "synopsis": "Newly crowned king of Wakanda, T'Challa is challenged for the throne by a rival with a claim of his own.",
+    },
+    "tony_mov_57": {
+        "director": "Ridley Scott",
+        "cast": ["Matt Damon", "Jessica Chastain", "Chiwetel Ejiofor", "Kristen Wiig"],
+        "synopsis": "Left for dead on Mars, an astronaut engineers his own survival while NASA scrambles to bring him home.",
+    },
+}
+
+# Poster paths in the shipped catalog that are malformed (TMDB image hashes are
+# 27 characters) and therefore resolve to a 404. Cleared so the app falls back
+# to generated artwork instead of a broken image.
+BROKEN_POSTERS = {"tony_mov_19", "tony_mov_57"}

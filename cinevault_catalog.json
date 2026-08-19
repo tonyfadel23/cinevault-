@@ -9,10 +9,12 @@
       "Sci-Fi",
       "Mystery"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Disclosure%20Day%20movie",
+    "cast": [],
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Disclosure%20Day+movie",
     "google_play_url": "https://play.google.com/store/search?q=Disclosure%20Day&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -31,10 +33,12 @@
       "Mystery",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Backrooms%20movie",
+    "cast": [],
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Backrooms+movie",
     "google_play_url": "https://play.google.com/store/search?q=Backrooms&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -53,10 +57,20 @@
       "Fantasy",
       "Adventure"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Mortal%20Kombat%20II%20movie",
+    "collection": "Mortal Kombat",
+    "director": "Simon McQuoid",
+    "cast": [
+      "Karl Urban",
+      "Adeline Rudolph",
+      "Lewis Tan",
+      "Jessica McNamee"
+    ],
+    "synopsis": "Earthrealm's champions are drawn back into the tournament as Johnny Cage joins the fight against Outworld.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Mortal%20Kombat%20II+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mortal%20Kombat%20II&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -75,10 +89,20 @@
       "Comedy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Space%20Jam%3A%20A%20New%20Legacy%20movie",
+    "collection": "Space Jam",
+    "director": "Malcolm D. Lee",
+    "cast": [
+      "LeBron James",
+      "Don Cheadle",
+      "Cedric Joe",
+      "Khris Davis"
+    ],
+    "synopsis": "A rogue AI traps LeBron James and his son inside a digital world, and only a basketball game alongside the Tune Squad can win their way out.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Space%20Jam%3A%20A%20New%20Legacy+movie",
     "google_play_url": "https://play.google.com/store/search?q=Space%20Jam%3A%20A%20New%20Legacy&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -99,10 +123,20 @@
       "Sci-Fi",
       "Adventure"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Superman%20movie",
+    "collection": "DC Universe",
+    "director": "James Gunn",
+    "cast": [
+      "David Corenswet",
+      "Rachel Brosnahan",
+      "Nicholas Hoult",
+      "Edi Gathegi"
+    ],
+    "synopsis": "Superman balances his Kryptonian heritage against his human upbringing while Lex Luthor turns the world against him.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Superman+movie",
     "google_play_url": "https://play.google.com/store/search?q=Superman&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -122,10 +156,20 @@
       "Thriller",
       "Adventure"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Mission%3A%20Impossible%20-%20Dead%20Reckoning%20movie",
+    "collection": "Mission: Impossible",
+    "director": "Christopher McQuarrie",
+    "cast": [
+      "Tom Cruise",
+      "Hayley Atwell",
+      "Ving Rhames",
+      "Simon Pegg"
+    ],
+    "synopsis": "Ethan Hunt and the IMF race the world's governments to a weapon that threatens all of humanity.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Mission%3A%20Impossible%20-%20Dead%20Reckoning+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mission%3A%20Impossible%20-%20Dead%20Reckoning&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -145,10 +189,19 @@
       "War",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Ministry%20of%20Ungentlemanly%20Warfare%20movie",
+    "director": "Guy Ritchie",
+    "cast": [
+      "Henry Cavill",
+      "Alan Ritchson",
+      "Eiza Gonzalez",
+      "Henry Golding"
+    ],
+    "synopsis": "A hand-picked band of misfit commandos runs an unsanctioned mission behind enemy lines in the Second World War.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Ministry%20of%20Ungentlemanly%20Warfare+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Ministry%20of%20Ungentlemanly%20Warfare&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -167,10 +220,19 @@
       "Crime",
       "Mystery"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Trap%20movie",
+    "director": "M. Night Shyamalan",
+    "cast": [
+      "Josh Hartnett",
+      "Ariel Donoghue",
+      "Saleka Shyamalan",
+      "Alison Pill"
+    ],
+    "synopsis": "A father takes his daughter to a sold-out pop concert and realises the venue is a police trap closing in on a serial killer.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Trap+movie",
     "google_play_url": "https://play.google.com/store/search?q=Trap&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -189,10 +251,20 @@
       "Comedy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=SCOOB%21%20movie",
+    "collection": "Scooby-Doo",
+    "director": "Tony Cervone",
+    "cast": [
+      "Will Forte",
+      "Zac Efron",
+      "Amanda Seyfried",
+      "Gina Rodriguez"
+    ],
+    "synopsis": "Scooby and the Mystery Inc. gang take on their biggest case yet, one that reveals Scooby's heroic destiny.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=SCOOB%21+movie",
     "google_play_url": "https://play.google.com/store/search?q=SCOOB%21&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -213,10 +285,19 @@
       "Sci-Fi",
       "Thriller"
     ],
+    "director": "Christopher Nolan",
+    "cast": [
+      "John David Washington",
+      "Robert Pattinson",
+      "Elizabeth Debicki",
+      "Kenneth Branagh"
+    ],
+    "synopsis": "Armed with a single word, a secret agent moves through a twilight world of espionage on a mission that unfolds beyond real time.",
     "poster_url": "https://image.tmdb.org/t/p/w500/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/wzJRB4MKi3yK138bEYvYrV65Ymv.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Tenet%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Tenet+movie",
     "google_play_url": "https://play.google.com/store/search?q=Tenet&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -236,10 +317,19 @@
       "Adventure",
       "Drama"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Mulan%20movie",
+    "director": "Niki Caro",
+    "cast": [
+      "Liu Yifei",
+      "Donnie Yen",
+      "Jet Li",
+      "Gong Li"
+    ],
+    "synopsis": "A young woman disguises herself as a man to take her ailing father's place in the imperial army.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Mulan+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mulan&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -259,10 +349,20 @@
       "Comedy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Jumanji%3A%20The%20Next%20Level%20movie",
+    "collection": "Jumanji",
+    "director": "Jake Kasdan",
+    "cast": [
+      "Dwayne Johnson",
+      "Kevin Hart",
+      "Jack Black",
+      "Karen Gillan"
+    ],
+    "synopsis": "The friends return to Jumanji to rescue one of their own, only to find the game has changed and the avatars are scrambled.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Jumanji%3A%20The%20Next%20Level+movie",
     "google_play_url": "https://play.google.com/store/search?q=Jumanji%3A%20The%20Next%20Level&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -283,10 +383,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Smurfs%202%20movie",
+    "collection": "The Smurfs",
+    "director": "Raja Gosnell",
+    "cast": [
+      "Neil Patrick Harris",
+      "Hank Azaria",
+      "Katy Perry",
+      "Brendan Gleeson"
+    ],
+    "synopsis": "Gargamel creates a pair of mischievous creatures to harness Smurf magic, and kidnaps Smurfette to learn the secret.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Smurfs%202+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Smurfs%202&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -298,7 +408,7 @@
   },
   {
     "id": "tony_mov_14",
-    "title": "Sonic The Hedgehog",
+    "title": "Sonic the Hedgehog",
     "year": "2020",
     "rating": 7.0,
     "runtime": 99,
@@ -308,10 +418,20 @@
       "Comedy",
       "Family"
     ],
+    "collection": "Sonic the Hedgehog",
+    "director": "Jeff Fowler",
+    "cast": [
+      "Ben Schwartz",
+      "James Marsden",
+      "Jim Carrey",
+      "Tika Sumpter"
+    ],
+    "synopsis": "A blue hedgehog with super speed teams up with a small-town sheriff to stay ahead of the mad Dr. Robotnik.",
     "poster_url": "https://image.tmdb.org/t/p/w500/aQvJ5GzGLAtBnfP4pkqBTp8849E.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/stmYUZgaIOXZZ9T9NsWf6P09pEb.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Sonic%20The%20Hedgehog%20movie",
-    "google_play_url": "https://play.google.com/store/search?q=Sonic%20The%20Hedgehog&c=movies",
+    "youtube_url": "https://www.youtube.com/results?search_query=Sonic%20the%20Hedgehog+movie",
+    "google_play_url": "https://play.google.com/store/search?q=Sonic%20the%20Hedgehog&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -333,10 +453,20 @@
       "Music",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Trolls%20World%20Tour%20movie",
+    "collection": "Trolls",
+    "director": "Walt Dohrn",
+    "cast": [
+      "Anna Kendrick",
+      "Justin Timberlake",
+      "Rachel Bloom",
+      "Kelly Clarkson"
+    ],
+    "synopsis": "Poppy and Branch discover their world is only one of six troll tribes, each devoted to a different kind of music.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Trolls%20World%20Tour+movie",
     "google_play_url": "https://play.google.com/store/search?q=Trolls%20World%20Tour&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -358,10 +488,19 @@
       "Adventure",
       "Fantasy"
     ],
+    "director": "Dan Scanlon",
+    "cast": [
+      "Tom Holland",
+      "Chris Pratt",
+      "Julia Louis-Dreyfus",
+      "Octavia Spencer"
+    ],
+    "synopsis": "Two elf brothers set out on a quest to spend one last day with the father they lost.",
     "poster_url": "https://image.tmdb.org/t/p/w500/f4aul3FyD3jv3v4bul1IrkW8vzq.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/qA3OqvDXRoFs1w4e8R2t2m8EsmR.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Onward%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Onward+movie",
     "google_play_url": "https://play.google.com/store/search?q=Onward&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -383,10 +522,19 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Dora%20and%20the%20Lost%20City%20of%20Gold%20movie",
+    "director": "James Bobin",
+    "cast": [
+      "Isabela Merced",
+      "Eugenio Derbez",
+      "Michael Pena",
+      "Eva Longoria"
+    ],
+    "synopsis": "A teenage explorer leads her friends through the jungle to rescue her parents and solve the mystery of a lost Inca city.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Dora%20and%20the%20Lost%20City%20of%20Gold+movie",
     "google_play_url": "https://play.google.com/store/search?q=Dora%20and%20the%20Lost%20City%20of%20Gold&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -407,10 +555,19 @@
       "Adventure",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Epic%20movie",
+    "director": "Chris Wedge",
+    "cast": [
+      "Amanda Seyfried",
+      "Josh Hutcherson",
+      "Colin Farrell",
+      "Beyonce Knowles"
+    ],
+    "synopsis": "A teenager is shrunk into a hidden forest world and joins its tiny warriors in a battle to save it.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Epic+movie",
     "google_play_url": "https://play.google.com/store/search?q=Epic&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -430,10 +587,19 @@
       "Comedy",
       "Music"
     ],
-    "poster_url": "https://image.tmdb.org/t/p/w500/9eS5iW6m5hE1y6T3y6H0e0d5.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/w1280/9eS5iW6m5hE1y6T3y6H0e0d5.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=School%20of%20Rock%20movie",
+    "director": "Richard Linklater",
+    "cast": [
+      "Jack Black",
+      "Joan Cusack",
+      "Mike White",
+      "Sarah Silverman"
+    ],
+    "synopsis": "A broke guitarist fakes his way into a substitute teaching job and turns a class of straight-A students into a rock band.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=School%20of%20Rock+movie",
     "google_play_url": "https://play.google.com/store/search?q=School%20of%20Rock&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -452,10 +618,20 @@
       "Family",
       "Fantasy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=My%20Little%20Pony%3A%20The%20Movie%20movie",
+    "collection": "My Little Pony",
+    "director": "Jayson Thiessen",
+    "cast": [
+      "Tara Strong",
+      "Emily Blunt",
+      "Kristin Chenoweth",
+      "Liev Schreiber"
+    ],
+    "synopsis": "When a dark force conquers Canterlot, the Mane 6 journey beyond Equestria to find the magic that can save their home.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=My%20Little%20Pony%3A%20The%20Movie+movie",
     "google_play_url": "https://play.google.com/store/search?q=My%20Little%20Pony%3A%20The%20Movie&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -476,10 +652,20 @@
       "Adventure",
       "Sci-Fi"
     ],
+    "collection": "Star Wars",
+    "director": "J.J. Abrams",
+    "cast": [
+      "Daisy Ridley",
+      "John Boyega",
+      "Harrison Ford",
+      "Adam Driver"
+    ],
+    "synopsis": "Three decades after the Empire's fall, a scavenger and a runaway stormtrooper are swept into the fight against the First Order.",
     "poster_url": "https://image.tmdb.org/t/p/w500/wqnLdwVXo59hOgnvgMv9tENggYm.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Force%20Awakens%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Force%20Awakens+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Force%20Awakens&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -499,10 +685,20 @@
       "Adventure",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Last%20Jedi%20movie",
+    "collection": "Star Wars",
+    "director": "Rian Johnson",
+    "cast": [
+      "Mark Hamill",
+      "Daisy Ridley",
+      "Adam Driver",
+      "Carrie Fisher"
+    ],
+    "synopsis": "Rey seeks out a reluctant Luke Skywalker for training while the Resistance runs for its life from the First Order fleet.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Last%20Jedi+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Last%20Jedi&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -521,10 +717,20 @@
       "Adventure",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Rise%20of%20Skywalker%20movie",
+    "collection": "Star Wars",
+    "director": "J.J. Abrams",
+    "cast": [
+      "Daisy Ridley",
+      "Adam Driver",
+      "Oscar Isaac",
+      "John Boyega"
+    ],
+    "synopsis": "The surviving Resistance makes a final stand as Rey confronts the truth of who she is.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Rise%20of%20Skywalker+movie",
     "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Rise%20of%20Skywalker&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -544,10 +750,19 @@
       "Adventure",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Spies%20in%20Disguise%20movie",
+    "director": "Nick Bruno",
+    "cast": [
+      "Will Smith",
+      "Tom Holland",
+      "Rashida Jones",
+      "Karen Gillan"
+    ],
+    "synopsis": "The world's suavest super-spy is accidentally turned into a pigeon, and has to rely on a young gadget inventor to save the day.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Spies%20in%20Disguise+movie",
     "google_play_url": "https://play.google.com/store/search?q=Spies%20in%20Disguise&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -568,10 +783,19 @@
       "Family",
       "Fantasy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20BFG%20movie",
+    "director": "Steven Spielberg",
+    "cast": [
+      "Mark Rylance",
+      "Ruby Barnhill",
+      "Penelope Wilton",
+      "Jemaine Clement"
+    ],
+    "synopsis": "An orphan girl befriends a gentle giant and together they take on the man-eating giants of Giant Country.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20BFG+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20BFG&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -593,10 +817,19 @@
       "Adventure",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Ratchet%20%26%20Clank%20movie",
+    "director": "Kevin Munroe",
+    "cast": [
+      "James Arnold Taylor",
+      "David Kaye",
+      "Paul Giamatti",
+      "John Goodman"
+    ],
+    "synopsis": "A small-town mechanic and a defective warbot join the galaxy's defenders to stop a planet-destroying weapon.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Ratchet%20%26%20Clank+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ratchet%20%26%20Clank&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -617,10 +850,20 @@
       "Drama",
       "Thriller"
     ],
+    "collection": "DC Universe",
+    "director": "Todd Phillips",
+    "cast": [
+      "Joaquin Phoenix",
+      "Robert De Niro",
+      "Zazie Beetz",
+      "Frances Conroy"
+    ],
+    "synopsis": "A failed comedian in a decaying Gotham drifts toward the violence that will make him the Joker.",
     "poster_url": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Joker%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Joker+movie",
     "google_play_url": "https://play.google.com/store/search?q=Joker&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -640,10 +883,20 @@
       "Adventure",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw%20movie",
+    "collection": "Fast & Furious",
+    "director": "David Leitch",
+    "cast": [
+      "Dwayne Johnson",
+      "Jason Statham",
+      "Idris Elba",
+      "Vanessa Kirby"
+    ],
+    "synopsis": "A lawman and an outcast who cannot stand each other are forced to team up against a genetically enhanced soldier.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw+movie",
     "google_play_url": "https://play.google.com/store/search?q=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -662,10 +915,19 @@
       "Family",
       "Drama"
     ],
+    "director": "Roger Allers",
+    "cast": [
+      "Matthew Broderick",
+      "James Earl Jones",
+      "Jeremy Irons",
+      "Nathan Lane"
+    ],
+    "synopsis": "A young lion prince flees his kingdom after his father's death, and must one day return to claim his place.",
     "poster_url": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/wXsQvli6tgWqwyUPz9T2uiLxFiM.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lion%20King%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lion%20King+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lion%20King&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -687,10 +949,20 @@
       "Adventure",
       "Sci-Fi"
     ],
+    "collection": "Marvel Cinematic Universe",
+    "director": "Jon Watts",
+    "cast": [
+      "Tom Holland",
+      "Jake Gyllenhaal",
+      "Zendaya",
+      "Samuel L. Jackson"
+    ],
+    "synopsis": "Peter Parker's school trip across Europe is hijacked by Nick Fury and a threat from another dimension.",
     "poster_url": "https://image.tmdb.org/t/p/w500/4q2hz2mYflgSnTOpWgiuvMu59L6.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/5myQ9wh0tK0j7Z5u1eP2T1f7m.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Spider-Man%3A%20Far%20from%20Home%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Spider-Man%3A%20Far%20from%20Home+movie",
     "google_play_url": "https://play.google.com/store/search?q=Spider-Man%3A%20Far%20from%20Home&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -710,10 +982,19 @@
       "Fantasy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Aladdin%20movie",
+    "director": "Guy Ritchie",
+    "cast": [
+      "Mena Massoud",
+      "Naomi Scott",
+      "Will Smith",
+      "Marwan Kenzari"
+    ],
+    "synopsis": "A street thief finds a lamp holding a wisecracking Genie, and wishes his way into the palace of Agrabah.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Aladdin+movie",
     "google_play_url": "https://play.google.com/store/search?q=Aladdin&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -734,10 +1015,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%3A%20Collision%20Course%20movie",
+    "collection": "Ice Age",
+    "director": "Mike Thurmeier",
+    "cast": [
+      "Ray Romano",
+      "John Leguizamo",
+      "Denis Leary",
+      "Simon Pegg"
+    ],
+    "synopsis": "Scrat's antics in space send an asteroid toward Earth, and the herd has to find a way to survive it.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%3A%20Collision%20Course+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ice%20Age%3A%20Collision%20Course&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -758,10 +1049,20 @@
       "Crime",
       "Thriller"
     ],
+    "collection": "John Wick",
+    "director": "Chad Stahelski",
+    "cast": [
+      "Keanu Reeves",
+      "Halle Berry",
+      "Ian McShane",
+      "Laurence Fishburne"
+    ],
+    "synopsis": "Excommunicado and hunted by every assassin in the city, John Wick fights to stay alive long enough to find a way out.",
     "poster_url": "https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/vVpEOvdxVBP2aV166j5Xlvb5C2f.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=John%20Wick%3A%20Chapter%203%20-%20Parabellum%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=John%20Wick%3A%20Chapter%203%20-%20Parabellum+movie",
     "google_play_url": "https://play.google.com/store/search?q=John%20Wick%3A%20Chapter%203%20-%20Parabellum&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -780,10 +1081,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%20movie",
+    "collection": "Ice Age",
+    "director": "Chris Wedge",
+    "cast": [
+      "Ray Romano",
+      "John Leguizamo",
+      "Denis Leary",
+      "Goran Visnjic"
+    ],
+    "synopsis": "A mammoth, a sloth and a sabre-tooth tiger form an unlikely herd to return a lost human baby to his family.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ice%20Age&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -796,7 +1107,7 @@
   },
   {
     "id": "tony_mov_35",
-    "title": "Pok\u00e9mon Detective Pikachu",
+    "title": "Pokémon Detective Pikachu",
     "year": "2019",
     "rating": 6.6,
     "runtime": 104,
@@ -806,10 +1117,20 @@
       "Fantasy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Pok%C3%A9mon%20Detective%20Pikachu%20movie",
+    "collection": "Pokemon",
+    "director": "Rob Letterman",
+    "cast": [
+      "Ryan Reynolds",
+      "Justice Smith",
+      "Kathryn Newton",
+      "Bill Nighy"
+    ],
+    "synopsis": "A young man teams up with a talking Pikachu detective to investigate his father's disappearance in Ryme City.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Pok%C3%A9mon%20Detective%20Pikachu+movie",
     "google_play_url": "https://play.google.com/store/search?q=Pok%C3%A9mon%20Detective%20Pikachu&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -830,10 +1151,20 @@
       "Drama",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Glass%20movie",
+    "collection": "Eastrail 177",
+    "director": "M. Night Shyamalan",
+    "cast": [
+      "James McAvoy",
+      "Bruce Willis",
+      "Samuel L. Jackson",
+      "Sarah Paulson"
+    ],
+    "synopsis": "Three men with extraordinary abilities are held in the same institution by a doctor who insists their powers are a delusion.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Glass+movie",
     "google_play_url": "https://play.google.com/store/search?q=Glass&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -852,10 +1183,20 @@
       "Adventure",
       "Sci-Fi"
     ],
+    "collection": "Marvel Cinematic Universe",
+    "director": "Anthony Russo",
+    "cast": [
+      "Robert Downey Jr.",
+      "Chris Hemsworth",
+      "Josh Brolin",
+      "Chris Evans"
+    ],
+    "synopsis": "The Avengers and their allies make a desperate stand as Thanos closes in on the six Infinity Stones.",
     "poster_url": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/bOGkgRGdhrBYJSLpXaxhXVstNsV.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Avengers%3A%20Infinity%20War%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Avengers%3A%20Infinity%20War+movie",
     "google_play_url": "https://play.google.com/store/search?q=Avengers%3A%20Infinity%20War&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -875,10 +1216,20 @@
       "Adventure",
       "Fantasy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Aquaman%20movie",
+    "collection": "DC Universe",
+    "director": "James Wan",
+    "cast": [
+      "Jason Momoa",
+      "Amber Heard",
+      "Patrick Wilson",
+      "Nicole Kidman"
+    ],
+    "synopsis": "The half-human heir to Atlantis must claim the lost trident to stop a war between the ocean and the surface world.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Aquaman+movie",
     "google_play_url": "https://play.google.com/store/search?q=Aquaman&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -898,10 +1249,20 @@
       "Fantasy",
       "Music"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Mary%20Poppins%20Returns%20movie",
+    "collection": "Mary Poppins",
+    "director": "Rob Marshall",
+    "cast": [
+      "Emily Blunt",
+      "Lin-Manuel Miranda",
+      "Ben Whishaw",
+      "Emily Mortimer"
+    ],
+    "synopsis": "A grown-up Jane and Michael Banks are visited once more by the magical nanny during a season of loss.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Mary%20Poppins%20Returns+movie",
     "google_play_url": "https://play.google.com/store/search?q=Mary%20Poppins%20Returns&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -922,10 +1283,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Ralph%20Breaks%20the%20Internet%20movie",
+    "collection": "Wreck-It Ralph",
+    "director": "Rich Moore",
+    "cast": [
+      "John C. Reilly",
+      "Sarah Silverman",
+      "Gal Gadot",
+      "Taraji P. Henson"
+    ],
+    "synopsis": "Ralph and Vanellope leave the arcade for the internet to find a part that can save her game.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Ralph%20Breaks%20the%20Internet+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ralph%20Breaks%20the%20Internet&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -947,10 +1318,20 @@
       "Adventure",
       "Family"
     ],
+    "collection": "How to Train Your Dragon",
+    "director": "Dean DeBlois",
+    "cast": [
+      "Jay Baruchel",
+      "Cate Blanchett",
+      "Gerard Butler",
+      "America Ferrera"
+    ],
+    "synopsis": "Hiccup and Toothless discover a hidden world of dragons, and a conqueror who wants them all.",
     "poster_url": "https://image.tmdb.org/t/p/w500/d13UHGvg6PpkeCG9hx2ioq3Eu0C.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/h9S95VdCgL4n5V4FqU6G6g2ZgY.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=How%20to%20Train%20Your%20Dragon%202%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=How%20to%20Train%20Your%20Dragon%202+movie",
     "google_play_url": "https://play.google.com/store/search?q=How%20to%20Train%20Your%20Dragon%202&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -971,10 +1352,20 @@
       "Action",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Venom%20movie",
+    "collection": "Sony Spider-Man Universe",
+    "director": "Ruben Fleischer",
+    "cast": [
+      "Tom Hardy",
+      "Michelle Williams",
+      "Riz Ahmed",
+      "Jenny Slate"
+    ],
+    "synopsis": "An investigative journalist is bonded to an alien symbiote with a will, an appetite and a voice of its own.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Venom+movie",
     "google_play_url": "https://play.google.com/store/search?q=Venom&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -993,10 +1384,19 @@
       "Music",
       "Biography"
     ],
+    "director": "Michael Gracey",
+    "cast": [
+      "Hugh Jackman",
+      "Zac Efron",
+      "Zendaya",
+      "Michelle Williams"
+    ],
+    "synopsis": "A showman builds a spectacle out of the people the world overlooked, and nearly loses everything chasing acclaim.",
     "poster_url": "https://image.tmdb.org/t/p/w500/b9bfmA2ZtCG7WgTssjO2L6pBv8q.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/7t88oP6kK30b4u3t2f5k9t4E7u.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Greatest%20Showman%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Greatest%20Showman+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Greatest%20Showman&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1015,10 +1415,20 @@
       "Action",
       "Thriller"
     ],
+    "collection": "Die Hard",
+    "director": "John McTiernan",
+    "cast": [
+      "Bruce Willis",
+      "Alan Rickman",
+      "Bonnie Bedelia",
+      "Reginald VelJohnson"
+    ],
+    "synopsis": "An off-duty cop is the only thing standing between a Los Angeles high-rise of hostages and the thieves who took it.",
     "poster_url": "https://image.tmdb.org/t/p/w500/yFihWxQ97pBBoYl24xsaLnei0oN.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/1k1qH7d0m8N4O1T9eG3w6s8Y1.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Die%20Hard%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Die%20Hard+movie",
     "google_play_url": "https://play.google.com/store/search?q=Die%20Hard&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1038,10 +1448,20 @@
       "Adventure",
       "Fantasy"
     ],
+    "collection": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "cast": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Viggo Mortensen",
+      "Sean Astin"
+    ],
+    "synopsis": "A hobbit inherits a ring of terrible power and sets out with eight companions to destroy it.",
     "poster_url": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cDK6.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/vRQnzdaWi09aHh9RPyuhM1q7a7A.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1061,10 +1481,20 @@
       "Adventure",
       "Fantasy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers%20movie",
+    "collection": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "cast": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Viggo Mortensen",
+      "Andy Serkis"
+    ],
+    "synopsis": "The broken fellowship fights on separate fronts as Frodo and Sam press toward Mordor with a treacherous guide.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": true,
     "tags": [
@@ -1084,10 +1514,20 @@
       "Adventure",
       "Fantasy"
     ],
+    "collection": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "cast": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Viggo Mortensen",
+      "Sean Astin"
+    ],
+    "synopsis": "Armies gather before the gates of Mordor to buy Frodo the time he needs to reach Mount Doom.",
     "poster_url": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/2u7zbn8EudG6kLlBzUYqP8v8mC.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1107,10 +1547,19 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Leap%21%20movie",
+    "director": "Eric Summer",
+    "cast": [
+      "Elle Fanning",
+      "Dane DeHaan",
+      "Carly Rae Jepsen",
+      "Maddie Ziegler"
+    ],
+    "synopsis": "An orphan girl runs away to Paris and talks her way into the Opera ballet school to chase her dream of dancing.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Leap%21+movie",
     "google_play_url": "https://play.google.com/store/search?q=Leap%21&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1131,10 +1580,20 @@
       "Comedy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Sherlock%20Gnomes%20movie",
+    "collection": "Gnomeo & Juliet",
+    "director": "John Stevenson",
+    "cast": [
+      "Johnny Depp",
+      "James McAvoy",
+      "Emily Blunt",
+      "Chiwetel Ejiofor"
+    ],
+    "synopsis": "London's garden gnomes start disappearing, and it takes the city's greatest ornamental detective to find them.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Sherlock%20Gnomes+movie",
     "google_play_url": "https://play.google.com/store/search?q=Sherlock%20Gnomes&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1155,10 +1614,19 @@
       "Sci-Fi",
       "Adventure"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Ready%20Player%20One%20movie",
+    "director": "Steven Spielberg",
+    "cast": [
+      "Tye Sheridan",
+      "Olivia Cooke",
+      "Ben Mendelsohn",
+      "Mark Rylance"
+    ],
+    "synopsis": "In a bleak 2045, players hunt for a hidden fortune inside a vast virtual world before a corporation can claim it.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Ready%20Player%20One+movie",
     "google_play_url": "https://play.google.com/store/search?q=Ready%20Player%20One&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1169,7 +1637,7 @@
   },
   {
     "id": "tony_mov_51",
-    "title": "Winnie The Pooh",
+    "title": "Winnie the Pooh",
     "year": "2011",
     "rating": 7.2,
     "runtime": 63,
@@ -1178,10 +1646,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Winnie%20The%20Pooh%20movie",
-    "google_play_url": "https://play.google.com/store/search?q=Winnie%20The%20Pooh&c=movies",
+    "collection": "Winnie the Pooh",
+    "director": "Stephen J. Anderson",
+    "cast": [
+      "Jim Cummings",
+      "Craig Ferguson",
+      "Tom Kenny",
+      "John Cleese"
+    ],
+    "synopsis": "Pooh sets out to find Eeyore a new tail, and the Hundred Acre Wood convinces itself a monster is on the loose.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Winnie%20the%20Pooh+movie",
+    "google_play_url": "https://play.google.com/store/search?q=Winnie%20the%20Pooh&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1203,10 +1681,19 @@
       "Comedy",
       "Family"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Pirates%21%20Band%20of%20Misfits%20movie",
+    "director": "Peter Lord",
+    "cast": [
+      "Hugh Grant",
+      "Martin Freeman",
+      "Imelda Staunton",
+      "David Tennant"
+    ],
+    "synopsis": "A hopeless pirate captain chases the Pirate of the Year award and ends up entangled with Charles Darwin.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Pirates%21%20Band%20of%20Misfits+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Pirates%21%20Band%20of%20Misfits&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1228,10 +1715,20 @@
       "Family",
       "Fantasy"
     ],
+    "collection": "Shrek",
+    "director": "Andrew Adamson",
+    "cast": [
+      "Mike Myers",
+      "Eddie Murphy",
+      "Cameron Diaz",
+      "John Lithgow"
+    ],
+    "synopsis": "A grumpy ogre strikes a bargain to rescue a princess so he can get his swamp back to himself.",
     "poster_url": "https://image.tmdb.org/t/p/w500/dyhaB19AIC4giTO7Bn2vJwOzEG9.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/i0A34q2K23KkHqV6Y1g4RjE0f.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=Shrek%20movie",
+    "youtube_url": "https://www.youtube.com/results?search_query=Shrek+movie",
     "google_play_url": "https://play.google.com/store/search?q=Shrek&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
@@ -1253,10 +1750,20 @@
       "Family",
       "Music"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Olaf%27s%20Frozen%20Adventure%20movie",
+    "collection": "Frozen",
+    "director": "Kevin Deters",
+    "cast": [
+      "Josh Gad",
+      "Kristen Bell",
+      "Idina Menzel",
+      "Jonathan Groff"
+    ],
+    "synopsis": "Olaf goes door to door through Arendelle collecting holiday traditions for Anna and Elsa.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Olaf%27s%20Frozen%20Adventure+movie",
     "google_play_url": "https://play.google.com/store/search?q=Olaf%27s%20Frozen%20Adventure&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1277,10 +1784,20 @@
       "Family",
       "Comedy"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Frozen%20Fever%20movie",
+    "collection": "Frozen",
+    "director": "Chris Buck",
+    "cast": [
+      "Kristen Bell",
+      "Idina Menzel",
+      "Josh Gad",
+      "Jonathan Groff"
+    ],
+    "synopsis": "Elsa throws Anna the perfect birthday party while fighting off a cold that keeps sneezing snowmen into the world.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Frozen%20Fever+movie",
     "google_play_url": "https://play.google.com/store/search?q=Frozen%20Fever&c=movies",
+    "trailer_key": null,
     "watched": false,
     "favorite": false,
     "tags": [
@@ -1301,10 +1818,20 @@
       "Adventure",
       "Sci-Fi"
     ],
-    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
-    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
-    "youtube_url": "https://www.youtube.com/results?search_query=Black%20Panther%20movie",
+    "collection": "Marvel Cinematic Universe",
+    "director": "Ryan Coogler",
+    "cast": [
+      "Chadwick Boseman",
+      "Michael B. Jordan",
+      "Lupita Nyong'o",
+      "Danai Gurira"
+    ],
+    "synopsis": "Newly crowned king of Wakanda, T'Challa is challenged for the throne by a rival with a claim of his own.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=Black%20Panther+movie",
     "google_play_url": "https://play.google.com/store/search?q=Black%20Panther&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": false,
     "tags": [
@@ -1323,10 +1850,19 @@
       "Drama",
       "Adventure"
     ],
-    "poster_url": "https://image.tmdb.org/t/p/w500/5BHuvQ6p9kL09NMElQPt2q9H9y.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/w1280/syzp3gA3z9g7k1x4s4Y9t8v3.jpg",
-    "youtube_url": "https://www.youtube.com/results?search_query=The%20Martian%20movie",
+    "director": "Ridley Scott",
+    "cast": [
+      "Matt Damon",
+      "Jessica Chastain",
+      "Chiwetel Ejiofor",
+      "Kristen Wiig"
+    ],
+    "synopsis": "Left for dead on Mars, an astronaut engineers his own survival while NASA scrambles to bring him home.",
+    "poster_url": null,
+    "backdrop_url": null,
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Martian+movie",
     "google_play_url": "https://play.google.com/store/search?q=The%20Martian&c=movies",
+    "trailer_key": null,
     "watched": true,
     "favorite": true,
     "tags": [
