@@ -1,0 +1,11 @@
+{
+  "name": "cinevault-launcher",
+  "version": "1.0.0",
+  "description": "Personal Movie Catalog & Google TV / YouTube Launcher",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["movie", "catalog", "launcher", "google-tv", "youtube"],
+  "author": "Tony Fadel",
+  "license": "MIT"
+}

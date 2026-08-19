@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineVault — Custom Movie Catalog & Launcher</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              900: '#881337',
+            },
+            cinema: {
+              base: '#0B0F17',
+              card: '#131B2A',
+              cardHover: '#1B263B',
+              border: '#233047',
+              accent: '#38BDF8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0B0F17;
+      color: #E2E8F0;
+    }
+    .poster-glow:hover {
+      box-shadow: 0 10px 30px -5px rgba(244, 63, 94, 0.3);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #131B2A;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2D3D58;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-white custom-scrollbar">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 bg-[#0B0F17]/90 backdrop-blur-md border-b border-cinema-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-amber-500 flex items-center justify-center shadow-lg shadow-brand-600/20">
+          <i data-lucide="film" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">CineVault</span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-brand-500 block -mt-1">Library Launcher</span>
+        </div>
+      </div>
+
+      <!-- Center Search -->
+      <div class="flex-1 max-w-xl relative">
+        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        <input type="text" id="searchInput" placeholder="Search by title, director, cast, or tag..." 
+               class="w-full bg-cinema-card border border-cinema-border rounded-xl pl-10 pr-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition shadow-inner">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <!-- Roulette / Surprise Me -->
+        <button onclick="openRouletteModal()" class="flex items-center gap-2 bg-gradient-to-r from-brand-600 to-rose-700 hover:from-brand-500 hover:to-rose-600 text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
+          <i data-lucide="shuffle" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Pick For Me</span>
+        </button>
+
+        <!-- Add Movie -->
+        <button onclick="openAddMovieModal()" class="flex items-center gap-1.5 bg-cinema-card hover:bg-cinema-cardHover border border-cinema-border text-slate-200 text-xs font-medium px-3 py-2 rounded-xl transition">
+          <i data-lucide="plus" class="w-4 h-4 text-emerald-400"></i>
+          <span class="hidden md:inline">Add Title</span>
+        </button>
+
+        <!-- Import / Export / Takeout -->
+        <button onclick="openDataModal()" title="Import / Export Library" class="p-2 bg-cinema-card hover:bg-cinema-cardHover border border-cinema-border text-slate-300 rounded-xl transition">
+          <i data-lucide="folder-sync" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Settings -->
+        <button onclick="openSettingsModal()" title="API Settings" class="p-2 bg-cinema-card hover:bg-cinema-cardHover border border-cinema-border text-slate-300 rounded-xl transition">
+          <i data-lucide="settings" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- HERO FEATURED SPOTLIGHT -->
+    <div id="spotlightBanner" class="relative rounded-2xl overflow-hidden border border-cinema-border bg-cinema-card shadow-2xl transition-all duration-500">
+      <!-- Backdrop Image with Gradient Overlay -->
+      <div id="spotlightBg" class="absolute inset-0 bg-cover bg-center transition-all duration-700" style="background-image: url('https://image.tmdb.org/t/p/w1280/xJHokMbljvjADYdit5fK5VQsXEG.jpg');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-[#0B0F17]/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0B0F17] via-[#0B0F17]/70 to-transparent"></div>
+
+      <!-- Spotlight Content -->
+      <div class="relative z-10 p-6 sm:p-10 max-w-2xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Featured Title
+        </div>
+        <h1 id="spotlightTitle" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interstellar</h1>
+        
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-300 font-medium">
+          <span id="spotlightRating" class="flex items-center gap-1 text-amber-400 font-bold bg-amber-400/10 px-2 py-0.5 rounded-md">
+            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> 8.7
+          </span>
+          <span id="spotlightYear" class="text-slate-400">2014</span>
+          <span>•</span>
+          <span id="spotlightRuntime" class="text-slate-400">169 mins</span>
+          <span>•</span>
+          <span id="spotlightGenres" class="text-slate-300">Sci-Fi, Drama</span>
+        </div>
+
+        <p id="spotlightSynopsis" class="text-sm text-slate-300 line-clamp-3 leading-relaxed">
+          When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot is tasked to pilot a spacecraft to find a new planet for humanity.
+        </p>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button id="spotlightPlayBtn" class="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/30 transition transform active:scale-95">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i> Watch Now
+          </button>
+          <button id="spotlightDetailsBtn" class="flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-sm font-medium px-4 py-2.5 rounded-xl transition">
+            <i data-lucide="info" class="w-4 h-4"></i> Details
+          </button>
+          <button onclick="randomizeSpotlight()" title="Next Featured" class="p-2.5 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-300 rounded-xl transition">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER & CONTROL TOOLBAR -->
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl p-4 space-y-4 shadow-lg">
+      
+      <!-- Category Tabs -->
+      <div class="flex items-center justify-between flex-wrap gap-2 border-b border-cinema-border/60 pb-3">
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar py-1">
+          <button onclick="setCategory('all')" id="cat-all" class="category-tab active-tab text-xs font-semibold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-brand-600 text-white">
+            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> All Movies (<span id="count-all">0</span>)
+          </button>
+          <button onclick="setCategory('favorite')" id="cat-favorite" class="category-tab text-xs font-medium px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-cinema-cardHover text-slate-300 hover:text-white">
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400"></i> Favorites (<span id="count-favorite">0</span>)
+          </button>
+          <button onclick="setCategory('family')" id="cat-family" class="category-tab text-xs font-medium px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-cinema-cardHover text-slate-300 hover:text-white">
+            <i data-lucide="users" class="w-3.5 h-3.5 text-amber-400"></i> Family Night (<span id="count-family">0</span>)
+          </button>
+          <button onclick="setCategory('unwatched')" id="cat-unwatched" class="category-tab text-xs font-medium px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-cinema-cardHover text-slate-300 hover:text-white">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-sky-400"></i> Watchlist (<span id="count-unwatched">0</span>)
+          </button>
+          <button onclick="setCategory('watched')" id="cat-watched" class="category-tab text-xs font-medium px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-cinema-cardHover text-slate-300 hover:text-white">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> Watched (<span id="count-watched">0</span>)
+          </button>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="flex items-center bg-cinema-base border border-cinema-border rounded-lg p-0.5">
+          <button onclick="setViewMode('grid')" id="view-grid" title="Poster Grid" class="p-1.5 rounded-md bg-cinema-cardHover text-white">
+            <i data-lucide="grid" class="w-4 h-4"></i>
+          </button>
+          <button onclick="setViewMode('list')" id="view-list" title="Detailed List" class="p-1.5 rounded-md text-slate-400 hover:text-white">
+            <i data-lucide="list" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-Filters: Genre, Decade, Sort, Minimum Rating -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <!-- Genre Filter -->
+        <div>
+          <label class="block text-slate-400 font-medium mb-1">Genre</label>
+          <select id="genreFilter" onchange="renderMovies()" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-brand-500">
+            <option value="">All Genres</option>
+          </select>
+        </div>
+
+        <!-- Decade Filter -->
+        <div>
+          <label class="block text-slate-400 font-medium mb-1">Decade</label>
+          <select id="decadeFilter" onchange="renderMovies()" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-brand-500">
+            <option value="">All Years</option>
+            <option value="2020s">2020s (2020–Present)</option>
+            <option value="2010s">2010s (2010–2019)</option>
+            <option value="2000s">2000s (2000–2009)</option>
+            <option value="1990s">1990s (1990–1999)</option>
+            <option value="classic">Earlier Classics</option>
+          </select>
+        </div>
+
+        <!-- Sort By -->
+        <div>
+          <label class="block text-slate-400 font-medium mb-1">Sort By</label>
+          <select id="sortBy" onchange="renderMovies()" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-brand-500">
+            <option value="rating_desc">Rating (High to Low)</option>
+            <option value="year_desc">Release Year (Newest First)</option>
+            <option value="year_asc">Release Year (Oldest First)</option>
+            <option value="title_asc">Title (A to Z)</option>
+            <option value="runtime_asc">Runtime (Shortest First)</option>
+            <option value="runtime_desc">Runtime (Longest First)</option>
+          </select>
+        </div>
+
+        <!-- Min Rating Slider -->
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-slate-400 font-medium">Min Rating</label>
+            <span id="ratingDisplay" class="text-amber-400 font-bold text-[11px]">Any</span>
+          </div>
+          <input type="range" id="minRatingFilter" min="0" max="9" step="0.5" value="0" oninput="updateRatingDisplay(); renderMovies();" 
+                 class="w-full h-2 bg-cinema-base rounded-lg appearance-none cursor-pointer accent-brand-500">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CATALOG RESULTS HEADER -->
+    <div class="flex items-center justify-between text-sm">
+      <div class="text-slate-400">
+        Showing <span id="displayedCount" class="font-bold text-white">0</span> of <span id="totalCount" class="font-bold text-white">0</span> titles
+      </div>
+      <div id="activeFilterTags" class="flex items-center gap-1.5 flex-wrap"></div>
+    </div>
+
+    <!-- MOVIE CATALOG CONTAINER -->
+    <div id="movieContainer">
+      <!-- Grid or List rendered here via JS -->
+    </div>
+
+  </main>
+
+  <!-- MOVIE DETAILS MODAL -->
+  <div id="movieDetailModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative">
+      <!-- Close Button -->
+      <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Backdrop Header -->
+      <div class="relative h-64 sm:h-80 w-full overflow-hidden">
+        <div id="modalBackdrop" class="absolute inset-0 bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-cinema-card via-cinema-card/60 to-transparent"></div>
+        
+        <div class="absolute bottom-4 left-6 right-6 flex items-end gap-5">
+          <img id="modalPoster" src="" alt="Poster" class="w-24 sm:w-32 rounded-xl shadow-2xl border-2 border-cinema-border -mb-8 hidden sm:block">
+          <div class="space-y-1">
+            <h2 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"></h2>
+            <div class="flex items-center gap-3 text-xs text-slate-300 flex-wrap">
+              <span id="modalRating" class="flex items-center gap-1 text-amber-400 font-bold bg-amber-400/10 px-2 py-0.5 rounded">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> <span id="modalRatingVal"></span>
+              </span>
+              <span id="modalYear"></span>
+              <span>•</span>
+              <span id="modalRuntime"></span>
+              <span>•</span>
+              <span id="modalGenres" class="text-brand-400 font-medium"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-6 pt-10">
+        <!-- Launch & Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Play on YouTube -->
+          <a id="modalYoutubeLink" href="#" target="_blank" class="flex-1 min-w-[160px] flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-lg transition">
+            <i data-lucide="play-circle" class="w-5 h-5"></i> Watch on YouTube
+          </a>
+          <!-- Play on Google TV -->
+          <a id="modalGooglePlayLink" href="#" target="_blank" class="flex-1 min-w-[160px] flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-semibold text-sm px-4 py-2.5 rounded-xl transition">
+            <i data-lucide="tv" class="w-4 h-4 text-emerald-400"></i> Google Play / TV
+          </a>
+          <!-- Watch Trailer -->
+          <button id="modalTrailerBtn" onclick="openTrailerModal()" class="flex items-center gap-1.5 bg-cinema-base hover:bg-cinema-cardHover border border-cinema-border text-slate-300 text-sm px-4 py-2.5 rounded-xl transition">
+            <i data-lucide="video" class="w-4 h-4 text-amber-400"></i> Trailer
+          </button>
+          <!-- Toggle Favorite -->
+          <button id="modalFavBtn" onclick="toggleFavoriteCurrent()" class="p-2.5 rounded-xl bg-cinema-base border border-cinema-border hover:bg-cinema-cardHover transition">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+          </button>
+          <!-- Toggle Watched -->
+          <button id="modalWatchedBtn" onclick="toggleWatchedCurrent()" class="p-2.5 rounded-xl bg-cinema-base border border-cinema-border hover:bg-cinema-cardHover transition">
+            <i data-lucide="check" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Synopsis -->
+        <div>
+          <h4 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1.5">Synopsis</h4>
+          <p id="modalSynopsis" class="text-sm text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <!-- Cast & Director -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <span class="text-slate-400 block font-medium mb-1">Director</span>
+            <span id="modalDirector" class="text-white font-semibold"></span>
+          </div>
+          <div>
+            <span class="text-slate-400 block font-medium mb-1">Top Cast</span>
+            <span id="modalCast" class="text-white font-semibold"></span>
+          </div>
+        </div>
+
+        <!-- User Tags & Notes -->
+        <div class="border-t border-cinema-border pt-4 space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Custom Tags</span>
+              <button onclick="addTagPrompt()" class="text-xs text-brand-400 hover:text-brand-300 font-medium">+ Add Tag</button>
+            </div>
+            <div id="modalTags" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 tracking-wider mb-1.5">Personal Notes</label>
+            <textarea id="modalNotes" rows="2" placeholder="Add personal watch notes (e.g., 'Watched with family in 4K', 'Great ending')..." 
+                      class="w-full bg-cinema-base border border-cinema-border rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-brand-500"></textarea>
+            <button onclick="saveCurrentNotes()" class="mt-2 text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium px-3 py-1.5 rounded-lg transition">Save Note</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROULETTE / PICK FOR ME MODAL -->
+  <div id="rouletteModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl max-w-md w-full p-6 text-center space-y-6 shadow-2xl">
+      <div class="space-y-1">
+        <div class="w-12 h-12 bg-gradient-to-tr from-brand-600 to-amber-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-brand-500/20">
+          <i data-lucide="dices" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="text-xl font-extrabold text-white">Movie Roulette</h3>
+        <p class="text-xs text-slate-400">Can't decide? Let CineVault pick what to watch from your active filters.</p>
+      </div>
+
+      <div id="rouletteCard" class="bg-cinema-base border border-cinema-border rounded-2xl p-4 transition-all duration-300">
+        <img id="roulettePoster" src="" alt="Movie Poster" class="w-36 h-52 object-cover rounded-xl mx-auto shadow-lg mb-3">
+        <h4 id="rouletteTitle" class="text-lg font-bold text-white line-clamp-1">Picking a movie...</h4>
+        <p id="rouletteMeta" class="text-xs text-slate-400 mt-1"></p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="spinRoulette()" class="flex-1 bg-gradient-to-r from-brand-600 to-rose-700 hover:from-brand-500 hover:to-rose-600 text-white font-bold text-sm py-2.5 rounded-xl shadow-lg transition">
+          🎲 Spin Again
+        </button>
+        <button onclick="watchRoulettePick()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm py-2.5 rounded-xl shadow-lg transition">
+          ▶ Watch This
+        </button>
+        <button onclick="closeRouletteModal()" class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAILER MODAL -->
+  <div id="trailerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden border border-cinema-border shadow-2xl">
+      <button onclick="closeTrailerModal()" class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/70 hover:bg-black text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="aspect-video w-full">
+        <iframe id="trailerIframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD MOVIE MODAL -->
+  <div id="addMovieModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-cinema-border pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-5 h-5 text-emerald-400"></i> Add New Title
+        </h3>
+        <button onclick="closeAddMovieModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="addMovieForm" onsubmit="handleAddMovie(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Movie Title *</label>
+          <input type="text" id="newTitle" required placeholder="e.g. Gladiator" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Release Year</label>
+            <input type="text" id="newYear" placeholder="2000" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Rating (0-10)</label>
+            <input type="number" step="0.1" id="newRating" placeholder="8.5" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Runtime (mins)</label>
+            <input type="number" id="newRuntime" placeholder="155" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Genres (comma separated)</label>
+            <input type="text" id="newGenres" placeholder="Action, Drama" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Poster Image URL</label>
+          <input type="url" id="newPoster" placeholder="https://image.tmdb.org/t/p/w500/..." class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Custom YouTube Watch URL (optional)</label>
+          <input type="url" id="newYoutube" placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-cinema-border">
+          <button type="button" onclick="closeAddMovieModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl">Add to Library</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- IMPORT / EXPORT / DATA MODAL -->
+  <div id="dataModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-cinema-border pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="database" class="w-5 h-5 text-brand-500"></i> Manage Catalog Data
+        </h3>
+        <button onclick="closeDataModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="p-3 bg-cinema-base rounded-xl border border-cinema-border space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-1.5"><i data-lucide="download" class="w-4 h-4 text-sky-400"></i> Export Library Backup</h4>
+          <p class="text-slate-400">Download your entire movie database, including custom tags, ratings, and notes as a JSON file.</p>
+          <button onclick="exportLibraryJSON()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium px-3.5 py-1.5 rounded-lg transition">Export JSON</button>
+        </div>
+
+        <div class="p-3 bg-cinema-base rounded-xl border border-cinema-border space-y-2">
+          <h4 class="font-bold text-white flex items-center gap-1.5"><i data-lucide="upload" class="w-4 h-4 text-emerald-400"></i> Import JSON or Takeout Data</h4>
+          <p class="text-slate-400">Upload a JSON catalog or paste JSON text below to merge with your library.</p>
+          <input type="file" id="importFileInput" accept=".json,.csv" onchange="handleFileImport(event)" class="text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-600 file:text-white hover:file:bg-brand-500 cursor-pointer">
+          <textarea id="importTextarea" rows="3" placeholder="Or paste JSON array here..." class="w-full bg-[#0B0F17] border border-cinema-border rounded-xl p-2.5 text-slate-200 mt-2 focus:outline-none focus:border-brand-500"></textarea>
+          <button onclick="handlePasteImport()" class="bg-brand-600 hover:bg-brand-500 text-white font-medium px-3.5 py-1.5 rounded-lg transition">Import Pasted JSON</button>
+        </div>
+
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="resetToDefaultLibrary()" class="text-rose-400 hover:text-rose-300 font-medium">Reset to Sample Catalog</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-cinema-card border border-cinema-border rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-cinema-border pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i> Settings
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">TMDb API Key (Optional)</label>
+          <input type="text" id="tmdbApiKey" placeholder="Enter free API key from themoviedb.org" 
+                 class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white focus:outline-none focus:border-brand-500">
+          <p class="text-[11px] text-slate-400 mt-1">If set, CineVault can automatically fetch high-res posters, cast, and trailers when you add new movies.</p>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Default Playback Launcher</label>
+          <select id="defaultLauncher" class="w-full bg-cinema-base border border-cinema-border rounded-xl px-3 py-2 text-white">
+            <option value="youtube">YouTube App / Web</option>
+            <option value="google_play">Google Play Movies / TV</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-cinema-border flex justify-end gap-2">
+          <button onclick="saveSettings()" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold px-4 py-2 rounded-xl">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC -->
+  <script>
+    // Initial Movie State
+    const INITIAL_MOVIES = [
+  {
+    "id": "tony_mov_1",
+    "title": "Disclosure Day",
+    "year": "2024",
+    "rating": 7.2,
+    "runtime": 98,
+    "genre": [
+      "Sci-Fi",
+      "Mystery"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Disclosure%20Day%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Disclosure%20Day&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_2",
+    "title": "Backrooms",
+    "year": "2024",
+    "rating": 6.8,
+    "runtime": 95,
+    "genre": [
+      "Horror",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Backrooms%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Backrooms&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_3",
+    "title": "Mortal Kombat II",
+    "year": "2025",
+    "rating": 7.1,
+    "runtime": 115,
+    "genre": [
+      "Action",
+      "Fantasy",
+      "Adventure"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Mortal%20Kombat%20II%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Mortal%20Kombat%20II&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_4",
+    "title": "Space Jam: A New Legacy",
+    "year": "2021",
+    "rating": 6.8,
+    "runtime": 115,
+    "genre": [
+      "Animation",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Space%20Jam%3A%20A%20New%20Legacy%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Space%20Jam%3A%20A%20New%20Legacy&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Rental History",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_5",
+    "title": "Superman",
+    "year": "2025",
+    "rating": 8.0,
+    "runtime": 135,
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Superman%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Superman&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_6",
+    "title": "Mission: Impossible - Dead Reckoning",
+    "year": "2023",
+    "rating": 7.7,
+    "runtime": 163,
+    "genre": [
+      "Action",
+      "Thriller",
+      "Adventure"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Mission%3A%20Impossible%20-%20Dead%20Reckoning%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Mission%3A%20Impossible%20-%20Dead%20Reckoning&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Rental History",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_7",
+    "title": "The Ministry of Ungentlemanly Warfare",
+    "year": "2024",
+    "rating": 7.0,
+    "runtime": 120,
+    "genre": [
+      "Action",
+      "War",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Ministry%20of%20Ungentlemanly%20Warfare%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Ministry%20of%20Ungentlemanly%20Warfare&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_8",
+    "title": "Trap",
+    "year": "2024",
+    "rating": 6.5,
+    "runtime": 105,
+    "genre": [
+      "Thriller",
+      "Crime",
+      "Mystery"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Trap%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Trap&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_9",
+    "title": "SCOOB!",
+    "year": "2020",
+    "rating": 6.8,
+    "runtime": 94,
+    "genre": [
+      "Animation",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=SCOOB%21%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=SCOOB%21&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_10",
+    "title": "Tenet",
+    "year": "2020",
+    "rating": 7.5,
+    "runtime": 150,
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/wzJRB4MKi3yK138bEYvYrV65Ymv.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Tenet%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Tenet&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_11",
+    "title": "Mulan",
+    "year": "2020",
+    "rating": 6.7,
+    "runtime": 115,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Mulan%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Mulan&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_12",
+    "title": "Jumanji: The Next Level",
+    "year": "2019",
+    "rating": 7.0,
+    "runtime": 123,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Jumanji%3A%20The%20Next%20Level%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Jumanji%3A%20The%20Next%20Level&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_13",
+    "title": "The Smurfs 2",
+    "year": "2013",
+    "rating": 5.8,
+    "runtime": 105,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Smurfs%202%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Smurfs%202&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_14",
+    "title": "Sonic The Hedgehog",
+    "year": "2020",
+    "rating": 7.0,
+    "runtime": 99,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/aQvJ5GzGLAtBnfP4pkqBTp8849E.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/stmYUZgaIOXZZ9T9NsWf6P09pEb.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Sonic%20The%20Hedgehog%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Sonic%20The%20Hedgehog&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_15",
+    "title": "Trolls World Tour",
+    "year": "2020",
+    "rating": 6.8,
+    "runtime": 90,
+    "genre": [
+      "Animation",
+      "Family",
+      "Music",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Trolls%20World%20Tour%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Trolls%20World%20Tour&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_16",
+    "title": "Onward",
+    "year": "2020",
+    "rating": 7.7,
+    "runtime": 102,
+    "genre": [
+      "Animation",
+      "Family",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/f4aul3FyD3jv3v4bul1IrkW8vzq.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/qA3OqvDXRoFs1w4e8R2t2m8EsmR.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Onward%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Onward&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_17",
+    "title": "Dora and the Lost City of Gold",
+    "year": "2019",
+    "rating": 6.5,
+    "runtime": 102,
+    "genre": [
+      "Adventure",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Dora%20and%20the%20Lost%20City%20of%20Gold%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Dora%20and%20the%20Lost%20City%20of%20Gold&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_18",
+    "title": "Epic",
+    "year": "2013",
+    "rating": 6.7,
+    "runtime": 102,
+    "genre": [
+      "Animation",
+      "Adventure",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Epic%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Epic&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_19",
+    "title": "School of Rock",
+    "year": "2003",
+    "rating": 7.2,
+    "runtime": 109,
+    "genre": [
+      "Comedy",
+      "Music"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/9eS5iW6m5hE1y6T3y6H0e0d5.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/9eS5iW6m5hE1y6T3y6H0e0d5.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=School%20of%20Rock%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=School%20of%20Rock&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_20",
+    "title": "My Little Pony: The Movie",
+    "year": "2017",
+    "rating": 6.1,
+    "runtime": 99,
+    "genre": [
+      "Animation",
+      "Family",
+      "Fantasy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=My%20Little%20Pony%3A%20The%20Movie%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=My%20Little%20Pony%3A%20The%20Movie&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_21",
+    "title": "Star Wars: The Force Awakens",
+    "year": "2015",
+    "rating": 7.8,
+    "runtime": 138,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/wqnLdwVXo59hOgnvgMv9tENggYm.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Force%20Awakens%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Force%20Awakens&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_22",
+    "title": "Star Wars: The Last Jedi",
+    "year": "2017",
+    "rating": 7.1,
+    "runtime": 152,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Last%20Jedi%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Last%20Jedi&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_23",
+    "title": "Star Wars: The Rise of Skywalker",
+    "year": "2019",
+    "rating": 6.5,
+    "runtime": 142,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Star%20Wars%3A%20The%20Rise%20of%20Skywalker%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Star%20Wars%3A%20The%20Rise%20of%20Skywalker&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_24",
+    "title": "Spies in Disguise",
+    "year": "2019",
+    "rating": 6.8,
+    "runtime": 102,
+    "genre": [
+      "Animation",
+      "Action",
+      "Adventure",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Spies%20in%20Disguise%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Spies%20in%20Disguise&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_25",
+    "title": "The BFG",
+    "year": "2016",
+    "rating": 6.4,
+    "runtime": 117,
+    "genre": [
+      "Adventure",
+      "Family",
+      "Fantasy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20BFG%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20BFG&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_26",
+    "title": "Ratchet & Clank",
+    "year": "2016",
+    "rating": 5.6,
+    "runtime": 94,
+    "genre": [
+      "Animation",
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Ratchet%20%26%20Clank%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Ratchet%20%26%20Clank&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_27",
+    "title": "Joker",
+    "year": "2019",
+    "rating": 8.4,
+    "runtime": 122,
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Joker%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Joker&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_28",
+    "title": "Fast & Furious Presents: Hobbs & Shaw",
+    "year": "2019",
+    "rating": 6.5,
+    "runtime": 137,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Fast%20%26%20Furious%20Presents%3A%20Hobbs%20%26%20Shaw&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_29",
+    "title": "The Lion King",
+    "year": "1994",
+    "rating": 8.3,
+    "runtime": 89,
+    "genre": [
+      "Animation",
+      "Family",
+      "Drama"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/wXsQvli6tgWqwyUPz9T2uiLxFiM.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lion%20King%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Lion%20King&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_30",
+    "title": "Spider-Man: Far from Home",
+    "year": "2019",
+    "rating": 7.5,
+    "runtime": 129,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/4q2hz2mYflgSnTOpWgiuvMu59L6.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/5myQ9wh0tK0j7Z5u1eP2T1f7m.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Spider-Man%3A%20Far%20from%20Home%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Spider-Man%3A%20Far%20from%20Home&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Rental History",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_31",
+    "title": "Aladdin",
+    "year": "2019",
+    "rating": 7.0,
+    "runtime": 128,
+    "genre": [
+      "Adventure",
+      "Fantasy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Aladdin%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Aladdin&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_32",
+    "title": "Ice Age: Collision Course",
+    "year": "2016",
+    "rating": 5.7,
+    "runtime": 94,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%3A%20Collision%20Course%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Ice%20Age%3A%20Collision%20Course&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_33",
+    "title": "John Wick: Chapter 3 - Parabellum",
+    "year": "2019",
+    "rating": 7.4,
+    "runtime": 131,
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/vVpEOvdxVBP2aV166j5Xlvb5C2f.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=John%20Wick%3A%20Chapter%203%20-%20Parabellum%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=John%20Wick%3A%20Chapter%203%20-%20Parabellum&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_34",
+    "title": "Ice Age",
+    "year": "2002",
+    "rating": 7.5,
+    "runtime": 81,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Ice%20Age%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Ice%20Age&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_35",
+    "title": "Pok\u00e9mon Detective Pikachu",
+    "year": "2019",
+    "rating": 6.6,
+    "runtime": 104,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Pok%C3%A9mon%20Detective%20Pikachu%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Pok%C3%A9mon%20Detective%20Pikachu&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_36",
+    "title": "Glass",
+    "year": "2019",
+    "rating": 6.7,
+    "runtime": 129,
+    "genre": [
+      "Thriller",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Glass%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Glass&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_37",
+    "title": "Avengers: Infinity War",
+    "year": "2018",
+    "rating": 8.4,
+    "runtime": 149,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/bOGkgRGdhrBYJSLpXaxhXVstNsV.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Avengers%3A%20Infinity%20War%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Avengers%3A%20Infinity%20War&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Rental History",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_38",
+    "title": "Aquaman",
+    "year": "2018",
+    "rating": 6.9,
+    "runtime": 143,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Aquaman%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Aquaman&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_39",
+    "title": "Mary Poppins Returns",
+    "year": "2018",
+    "rating": 6.7,
+    "runtime": 130,
+    "genre": [
+      "Family",
+      "Comedy",
+      "Fantasy",
+      "Music"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Mary%20Poppins%20Returns%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Mary%20Poppins%20Returns&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_40",
+    "title": "Ralph Breaks the Internet",
+    "year": "2018",
+    "rating": 7.0,
+    "runtime": 112,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Ralph%20Breaks%20the%20Internet%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Ralph%20Breaks%20the%20Internet&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Rental History",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_41",
+    "title": "How to Train Your Dragon 2",
+    "year": "2014",
+    "rating": 7.8,
+    "runtime": 102,
+    "genre": [
+      "Animation",
+      "Action",
+      "Adventure",
+      "Family"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/d13UHGvg6PpkeCG9hx2ioq3Eu0C.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/h9S95VdCgL4n5V4FqU6G6g2ZgY.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=How%20to%20Train%20Your%20Dragon%202%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=How%20to%20Train%20Your%20Dragon%202&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_42",
+    "title": "Venom",
+    "year": "2018",
+    "rating": 6.7,
+    "runtime": 112,
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Venom%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Venom&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_43",
+    "title": "The Greatest Showman",
+    "year": "2017",
+    "rating": 7.6,
+    "runtime": 105,
+    "genre": [
+      "Drama",
+      "Music",
+      "Biography"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/b9bfmA2ZtCG7WgTssjO2L6pBv8q.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/7t88oP6kK30b4u3t2f5k9t4E7u.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Greatest%20Showman%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Greatest%20Showman&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_44",
+    "title": "Die Hard",
+    "year": "1988",
+    "rating": 8.2,
+    "runtime": 132,
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/yFihWxQ97pBBoYl24xsaLnei0oN.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/1k1qH7d0m8N4O1T9eG3w6s8Y1.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Die%20Hard%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Die%20Hard&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_45",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": "2001",
+    "rating": 8.8,
+    "runtime": 178,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cDK6.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/vRQnzdaWi09aHh9RPyuhM1q7a7A.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_46",
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": "2002",
+    "rating": 8.7,
+    "runtime": 179,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers&c=movies",
+    "watched": false,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_47",
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": "2003",
+    "rating": 9.0,
+    "runtime": 201,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/2u7zbn8EudG6kLlBzUYqP8v8mC.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_48",
+    "title": "Leap!",
+    "year": "2016",
+    "rating": 6.8,
+    "runtime": 89,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Leap%21%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Leap%21&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_49",
+    "title": "Sherlock Gnomes",
+    "year": "2018",
+    "rating": 5.2,
+    "runtime": 86,
+    "genre": [
+      "Animation",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Sherlock%20Gnomes%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Sherlock%20Gnomes&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_50",
+    "title": "Ready Player One",
+    "year": "2018",
+    "rating": 7.5,
+    "runtime": 140,
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Ready%20Player%20One%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Ready%20Player%20One&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Rental History",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_51",
+    "title": "Winnie The Pooh",
+    "year": "2011",
+    "rating": 7.2,
+    "runtime": 63,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Winnie%20The%20Pooh%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Winnie%20The%20Pooh&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_52",
+    "title": "The Pirates! Band of Misfits",
+    "year": "2012",
+    "rating": 6.7,
+    "runtime": 88,
+    "genre": [
+      "Animation",
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Pirates%21%20Band%20of%20Misfits%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Pirates%21%20Band%20of%20Misfits&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_53",
+    "title": "Shrek",
+    "year": "2001",
+    "rating": 7.9,
+    "runtime": 90,
+    "genre": [
+      "Animation",
+      "Comedy",
+      "Family",
+      "Fantasy"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/dyhaB19AIC4giTO7Bn2vJwOzEG9.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/i0A34q2K23KkHqV6Y1g4RjE0f.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Shrek%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Shrek&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_54",
+    "title": "Olaf's Frozen Adventure",
+    "year": "2017",
+    "rating": 6.5,
+    "runtime": 22,
+    "genre": [
+      "Animation",
+      "Family",
+      "Music"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Olaf%27s%20Frozen%20Adventure%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Olaf%27s%20Frozen%20Adventure&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_55",
+    "title": "Frozen Fever",
+    "year": "2015",
+    "rating": 6.8,
+    "runtime": 8,
+    "genre": [
+      "Animation",
+      "Family",
+      "Comedy"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Frozen%20Fever%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Frozen%20Fever&c=movies",
+    "watched": false,
+    "favorite": false,
+    "tags": [
+      "Purchased",
+      "Family Night",
+      "Kids Pick"
+    ],
+    "notes": "Acquired via Google Play (Purchased)"
+  },
+  {
+    "id": "tony_mov_56",
+    "title": "Black Panther",
+    "year": "2018",
+    "rating": 7.3,
+    "runtime": 134,
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80",
+    "backdrop_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Black%20Panther%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=Black%20Panther&c=movies",
+    "watched": true,
+    "favorite": false,
+    "tags": [
+      "Rental History"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  },
+  {
+    "id": "tony_mov_57",
+    "title": "The Martian",
+    "year": "2015",
+    "rating": 8.0,
+    "runtime": 144,
+    "genre": [
+      "Sci-Fi",
+      "Drama",
+      "Adventure"
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/w500/5BHuvQ6p9kL09NMElQPt2q9H9y.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/w1280/syzp3gA3z9g7k1x4s4Y9t8v3.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=The%20Martian%20movie",
+    "google_play_url": "https://play.google.com/store/search?q=The%20Martian&c=movies",
+    "watched": true,
+    "favorite": true,
+    "tags": [
+      "Rental History",
+      "Top Rated"
+    ],
+    "notes": "Acquired via Google Play (Rented)"
+  }
+];
+
+    let movies = JSON.parse(localStorage.getItem('cinevault_movies')) || INITIAL_MOVIES;
+    let activeCategory = 'all';
+    let viewMode = 'grid'; // 'grid' or 'list'
+    let currentDetailMovie = null;
+
+    // Save movies to local storage
+    function saveMovies() {
+      localStorage.setItem('cinevault_movies', JSON.stringify(movies));
+      updateCategoryCounts();
+    }
+
+    // Populate Genres dropdown
+    function populateGenreDropdown() {
+      const genresSet = new Set();
+      movies.forEach(m => {
+        if (Array.isArray(m.genre)) {
+          m.genre.forEach(g => genresSet.add(g));
+        }
+      });
+      const select = document.getElementById('genreFilter');
+      select.innerHTML = '<option value="">All Genres</option>';
+      Array.from(genresSet).sort().forEach(g => {
+        select.innerHTML += `<option value="${g}">${g}</option>`;
+      });
+    }
+
+    // Category Tabs Handler
+    function setCategory(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.category-tab').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-cinema-cardHover', 'text-slate-300');
+      });
+      const activeBtn = document.getElementById(`cat-${cat}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-brand-600', 'text-white');
+        activeBtn.classList.remove('bg-cinema-cardHover', 'text-slate-300');
+      }
+      renderMovies();
+    }
+
+    // View Mode Handler
+    function setViewMode(mode) {
+      viewMode = mode;
+      if (mode === 'grid') {
+        document.getElementById('view-grid').classList.add('bg-cinema-cardHover', 'text-white');
+        document.getElementById('view-grid').classList.remove('text-slate-400');
+        document.getElementById('view-list').classList.remove('bg-cinema-cardHover', 'text-white');
+        document.getElementById('view-list').classList.add('text-slate-400');
+      } else {
+        document.getElementById('view-list').classList.add('bg-cinema-cardHover', 'text-white');
+        document.getElementById('view-list').classList.remove('text-slate-400');
+        document.getElementById('view-grid').classList.remove('bg-cinema-cardHover', 'text-white');
+        document.getElementById('view-grid').classList.add('text-slate-400');
+      }
+      renderMovies();
+    }
+
+    function updateRatingDisplay() {
+      const val = document.getElementById('minRatingFilter').value;
+      document.getElementById('ratingDisplay').innerText = val > 0 ? `${val}+ Stars` : 'Any';
+    }
+
+    function updateCategoryCounts() {
+      document.getElementById('count-all').innerText = movies.length;
+      document.getElementById('count-favorite').innerText = movies.filter(m => m.favorite).length;
+      document.getElementById('count-family').innerText = movies.filter(m => (m.genre || []).includes('Family') || (m.tags || []).includes('Family Night') || (m.tags || []).includes('Kids Pick')).length;
+      document.getElementById('count-unwatched').innerText = movies.filter(m => !m.watched).length;
+      document.getElementById('count-watched').innerText = movies.filter(m => m.watched).length;
+    }
+
+    // Main Filter & Render Pipeline
+    function getFilteredMovies() {
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const genre = document.getElementById('genreFilter').value;
+      const decade = document.getElementById('decadeFilter').value;
+      const minRating = parseFloat(document.getElementById('minRatingFilter').value) || 0;
+      const sortBy = document.getElementById('sortBy').value;
+
+      return movies.filter(m => {
+        // Category Filter
+        if (activeCategory === 'favorite' && !m.favorite) return false;
+        if (activeCategory === 'unwatched' && m.watched) return false;
+        if (activeCategory === 'watched' && !m.watched) return false;
+        if (activeCategory === 'family') {
+          const isFamily = (m.genre || []).includes('Family') || (m.tags || []).includes('Family Night') || (m.tags || []).includes('Kids Pick');
+          if (!isFamily) return false;
+        }
+
+        // Genre Filter
+        if (genre && !(m.genre || []).includes(genre)) return false;
+
+        // Decade Filter
+        const year = parseInt(m.year) || 0;
+        if (decade === '2020s' && (year < 2020)) return false;
+        if (decade === '2010s' && (year < 2010 || year > 2019)) return false;
+        if (decade === '2000s' && (year < 2000 || year > 2009)) return false;
+        if (decade === '1990s' && (year < 1990 || year > 1999)) return false;
+        if (decade === 'classic' && (year >= 1990)) return false;
+
+        // Min Rating
+        if ((m.rating || 0) < minRating) return false;
+
+        // Search Query
+        if (search) {
+          const inTitle = (m.title || '').toLowerCase().includes(search);
+          const inDirector = (m.director || '').toLowerCase().includes(search);
+          const inCast = (m.cast || []).some(c => c.toLowerCase().includes(search));
+          const inTags = (m.tags || []).some(t => t.toLowerCase().includes(search));
+          const inGenres = (m.genre || []).some(g => g.toLowerCase().includes(search));
+          if (!inTitle && !inDirector && !inCast && !inTags && !inGenres) return false;
+        }
+
+        return true;
+      }).sort((a, b) => {
+        if (sortBy === 'rating_desc') return (b.rating || 0) - (a.rating || 0);
+        if (sortBy === 'year_desc') return (parseInt(b.year) || 0) - (parseInt(a.year) || 0);
+        if (sortBy === 'year_asc') return (parseInt(a.year) || 0) - (parseInt(b.year) || 0);
+        if (sortBy === 'title_asc') return (a.title || '').localeCompare(b.title || '');
+        if (sortBy === 'runtime_asc') return (a.runtime || 0) - (b.runtime || 0);
+        if (sortBy === 'runtime_desc') return (b.runtime || 0) - (a.runtime || 0);
+        return 0;
+      });
+    }
+
+    function renderMovies() {
+      const filtered = getFilteredMovies();
+      document.getElementById('displayedCount').innerText = filtered.length;
+      document.getElementById('totalCount').innerText = movies.length;
+
+      const container = document.getElementById('movieContainer');
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 bg-cinema-card border border-cinema-border rounded-2xl p-8 space-y-3">
+            <div class="w-12 h-12 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
+              <i data-lucide="film" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-base font-bold text-white">No titles match your criteria</h3>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto">Try clearing your filters or search terms to see your full movie catalog.</p>
+            <button onclick="resetFilters()" class="text-xs bg-brand-600 hover:bg-brand-500 text-white font-medium px-4 py-2 rounded-xl transition">Reset Filters</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      if (viewMode === 'grid') {
+        container.innerHTML = `
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            ${filtered.map(m => `
+              <div class="group relative bg-cinema-card border border-cinema-border rounded-xl overflow-hidden shadow-md hover:border-slate-600 transition-all duration-200 flex flex-col">
+                <!-- Poster Image -->
+                <div class="relative aspect-[2/3] w-full overflow-hidden bg-slate-900 cursor-pointer" onclick="openDetailModal('${m.id}')">
+                  <img src="${m.poster_url || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80'}" 
+                       alt="${m.title}" 
+                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                       onerror="this.src='https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80'">
+                  
+                  <!-- Hover Action Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-between p-3">
+                    <div class="flex justify-between items-center">
+                      <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-md text-amber-400 flex items-center gap-1">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i> ${m.rating || 'N/A'}
+                      </span>
+                      <button onclick="event.stopPropagation(); toggleFavorite('${m.id}')" class="p-1.5 rounded-full bg-black/60 hover:bg-brand-600 text-white transition">
+                        <i data-lucide="heart" class="w-3.5 h-3.5 ${m.favorite ? 'fill-rose-500 text-rose-500' : ''}"></i>
+                      </button>
+                    </div>
+
+                    <div class="space-y-2">
+                      <a href="${m.youtube_url}" target="_blank" onclick="event.stopPropagation()" class="w-full flex items-center justify-center gap-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold py-1.5 rounded-lg shadow transition">
+                        <i data-lucide="play" class="w-3 h-3 fill-current"></i> Play
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Bottom Details -->
+                <div class="p-2.5 flex-1 flex flex-col justify-between bg-cinema-card">
+                  <div>
+                    <h3 class="font-bold text-xs text-white truncate cursor-pointer hover:text-brand-400" onclick="openDetailModal('${m.id}')" title="${m.title}">
+                      ${m.title}
+                    </h3>
+                    <div class="flex items-center justify-between text-[10px] text-slate-400 mt-1">
+                      <span>${m.year || '—'}</span>
+                      <span>${m.runtime ? m.runtime + 'm' : ''}</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-cinema-border/50 text-[10px]">
+                    <span class="text-slate-400 truncate max-w-[80px]">${(m.genre || [])[0] || 'Movie'}</span>
+                    <button onclick="toggleWatched('${m.id}')" class="flex items-center gap-1 text-[10px] ${m.watched ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-300'}">
+                      <i data-lucide="${m.watched ? 'check-circle-2' : 'circle'}" class="w-3 h-3"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        // Detailed List / Table View
+        container.innerHTML = `
+          <div class="bg-cinema-card border border-cinema-border rounded-2xl overflow-hidden shadow-lg">
+            <div class="overflow-x-auto custom-scrollbar">
+              <table class="w-full text-left text-xs text-slate-300">
+                <thead class="bg-cinema-base text-slate-400 border-b border-cinema-border uppercase text-[10px] font-bold tracking-wider">
+                  <tr>
+                    <th class="py-3 px-4">Title</th>
+                    <th class="py-3 px-3">Year</th>
+                    <th class="py-3 px-3">Rating</th>
+                    <th class="py-3 px-3">Runtime</th>
+                    <th class="py-3 px-3">Genres</th>
+                    <th class="py-3 px-3">Director</th>
+                    <th class="py-3 px-3 text-center">Status</th>
+                    <th class="py-3 px-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-cinema-border">
+                  ${filtered.map(m => `
+                    <tr class="hover:bg-cinema-cardHover/50 transition cursor-pointer" onclick="openDetailModal('${m.id}')">
+                      <td class="py-3 px-4 font-semibold text-white flex items-center gap-3">
+                        <img src="${m.poster_url || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=100&q=80'}" class="w-8 h-11 object-cover rounded shadow">
+                        <span class="hover:text-brand-400 transition">${m.title}</span>
+                      </td>
+                      <td class="py-3 px-3 text-slate-400">${m.year || '—'}</td>
+                      <td class="py-3 px-3 text-amber-400 font-bold">★ ${m.rating || '—'}</td>
+                      <td class="py-3 px-3 text-slate-400">${m.runtime ? m.runtime + ' min' : '—'}</td>
+                      <td class="py-3 px-3"><span class="text-brand-400">${(m.genre || []).slice(0, 2).join(', ')}</span></td>
+                      <td class="py-3 px-3 text-slate-300">${m.director || '—'}</td>
+                      <td class="py-3 px-3 text-center">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold ${m.watched ? 'bg-emerald-500/10 text-emerald-400' : 'bg-sky-500/10 text-sky-400'}">
+                          ${m.watched ? 'Watched' : 'Watchlist'}
+                        </span>
+                      </td>
+                      <td class="py-3 px-4 text-right" onclick="event.stopPropagation()">
+                        <div class="flex items-center justify-end gap-2">
+                          <a href="${m.youtube_url}" target="_blank" class="p-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white" title="Play">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                          </a>
+                          <button onclick="toggleFavorite('${m.id}')" class="p-1.5 rounded-lg bg-cinema-base hover:bg-slate-700 text-white" title="Favorite">
+                            <i data-lucide="heart" class="w-3.5 h-3.5 ${m.favorite ? 'fill-rose-500 text-rose-500' : 'text-slate-400'}"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+
+      lucide.createIcons();
+    }
+
+    // Spotlight Banner
+    function setSpotlight(movie) {
+      if (!movie) return;
+      document.getElementById('spotlightBg').style.backgroundImage = `url('${movie.backdrop_url || movie.poster_url}')`;
+      document.getElementById('spotlightTitle').innerText = movie.title;
+      document.getElementById('spotlightRating').innerHTML = `<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> ${movie.rating || 'N/A'}`;
+      document.getElementById('spotlightYear').innerText = movie.year || '';
+      document.getElementById('spotlightRuntime').innerText = movie.runtime ? `${movie.runtime} mins` : '';
+      document.getElementById('spotlightGenres').innerText = (movie.genre || []).join(', ');
+      document.getElementById('spotlightSynopsis').innerText = movie.synopsis || 'No overview available.';
+      
+      document.getElementById('spotlightPlayBtn').onclick = () => window.open(movie.youtube_url, '_blank');
+      document.getElementById('spotlightDetailsBtn').onclick = () => openDetailModal(movie.id);
+      lucide.createIcons();
+    }
+
+    function randomizeSpotlight() {
+      const eligible = movies.filter(m => m.backdrop_url);
+      const chosen = eligible[Math.floor(Math.random() * eligible.length)] || movies[0];
+      setSpotlight(chosen);
+    }
+
+    // Detail Modal
+    function openDetailModal(id) {
+      const m = movies.find(item => item.id === id);
+      if (!m) return;
+      currentDetailMovie = m;
+
+      document.getElementById('modalBackdrop').style.backgroundImage = `url('${m.backdrop_url || m.poster_url}')`;
+      document.getElementById('modalPoster').src = m.poster_url || '';
+      document.getElementById('modalTitle').innerText = m.title;
+      document.getElementById('modalRatingVal').innerText = m.rating || 'N/A';
+      document.getElementById('modalYear').innerText = m.year || '';
+      document.getElementById('modalRuntime').innerText = m.runtime ? `${m.runtime} mins` : '';
+      document.getElementById('modalGenres').innerText = (m.genre || []).join(', ');
+      document.getElementById('modalSynopsis').innerText = m.synopsis || 'No synopsis available.';
+      document.getElementById('modalDirector').innerText = m.director || '—';
+      document.getElementById('modalCast').innerText = (m.cast || []).join(', ') || '—';
+      document.getElementById('modalNotes').value = m.notes || '';
+
+      document.getElementById('modalYoutubeLink').href = m.youtube_url || '#';
+      document.getElementById('modalGooglePlayLink').href = m.google_play_url || '#';
+
+      const favBtn = document.getElementById('modalFavBtn');
+      favBtn.innerHTML = `<i data-lucide="heart" class="w-5 h-5 ${m.favorite ? 'fill-rose-500 text-rose-500' : 'text-slate-300'}"></i>`;
+
+      const watchedBtn = document.getElementById('modalWatchedBtn');
+      watchedBtn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 ${m.watched ? 'text-emerald-400' : 'text-slate-300'}"></i>`;
+
+      // Render Tags
+      renderModalTags();
+
+      document.getElementById('movieDetailModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeDetailModal() {
+      document.getElementById('movieDetailModal').classList.add('hidden');
+    }
+
+    function renderModalTags() {
+      if (!currentDetailMovie) return;
+      const container = document.getElementById('modalTags');
+      container.innerHTML = (currentDetailMovie.tags || []).map(t => `
+        <span class="inline-flex items-center gap-1 bg-cinema-base border border-cinema-border text-slate-300 px-2.5 py-1 rounded-lg text-xs">
+          ${t}
+          <button onclick="removeTag('${t}')" class="text-slate-500 hover:text-rose-400 ml-1">×</button>
+        </span>
+      `).join('');
+    }
+
+    function addTagPrompt() {
+      if (!currentDetailMovie) return;
+      const tag = prompt("Enter new tag (e.g. '4K HDR', 'Kids Favorite'):");
+      if (tag && tag.trim()) {
+        currentDetailMovie.tags = currentDetailMovie.tags || [];
+        if (!currentDetailMovie.tags.includes(tag.trim())) {
+          currentDetailMovie.tags.push(tag.trim());
+          saveMovies();
+          renderModalTags();
+          renderMovies();
+        }
+      }
+    }
+
+    function removeTag(tag) {
+      if (!currentDetailMovie || !currentDetailMovie.tags) return;
+      currentDetailMovie.tags = currentDetailMovie.tags.filter(t => t !== tag);
+      saveMovies();
+      renderModalTags();
+      renderMovies();
+    }
+
+    function saveCurrentNotes() {
+      if (!currentDetailMovie) return;
+      currentDetailMovie.notes = document.getElementById('modalNotes').value;
+      saveMovies();
+      alert("Note saved!");
+    }
+
+    function toggleFavorite(id) {
+      const m = movies.find(item => item.id === id);
+      if (m) {
+        m.favorite = !m.favorite;
+        saveMovies();
+        renderMovies();
+      }
+    }
+
+    function toggleFavoriteCurrent() {
+      if (currentDetailMovie) {
+        toggleFavorite(currentDetailMovie.id);
+        openDetailModal(currentDetailMovie.id);
+      }
+    }
+
+    function toggleWatched(id) {
+      const m = movies.find(item => item.id === id);
+      if (m) {
+        m.watched = !m.watched;
+        saveMovies();
+        renderMovies();
+      }
+    }
+
+    function toggleWatchedCurrent() {
+      if (currentDetailMovie) {
+        toggleWatched(currentDetailMovie.id);
+        openDetailModal(currentDetailMovie.id);
+      }
+    }
+
+    // Trailer Modal
+    function openTrailerModal() {
+      if (!currentDetailMovie || !currentDetailMovie.trailer_key) {
+        alert("No official trailer link available for this title.");
+        return;
+      }
+      document.getElementById('trailerIframe').src = `https://www.youtube.com/embed/${currentDetailMovie.trailer_key}?autoplay=1`;
+      document.getElementById('trailerModal').classList.remove('hidden');
+    }
+
+    function closeTrailerModal() {
+      document.getElementById('trailerIframe').src = '';
+      document.getElementById('trailerModal').classList.add('hidden');
+    }
+
+    // Roulette / Pick For Me Modal
+    let roulettePick = null;
+    function openRouletteModal() {
+      const filtered = getFilteredMovies();
+      if (filtered.length === 0) {
+        alert("No movies available with current filters.");
+        return;
+      }
+      document.getElementById('rouletteModal').classList.remove('hidden');
+      spinRoulette();
+    }
+
+    function closeRouletteModal() {
+      document.getElementById('rouletteModal').classList.add('hidden');
+    }
+
+    function spinRoulette() {
+      const filtered = getFilteredMovies();
+      if (filtered.length === 0) return;
+      
+      let count = 0;
+      const interval = setInterval(() => {
+        const randomMovie = filtered[Math.floor(Math.random() * filtered.length)];
+        document.getElementById('roulettePoster').src = randomMovie.poster_url || '';
+        document.getElementById('rouletteTitle').innerText = randomMovie.title;
+        document.getElementById('rouletteMeta').innerText = `${randomMovie.year} • ⭐ ${randomMovie.rating} • ${randomMovie.runtime || '—'} mins`;
+        count++;
+        if (count > 10) {
+          clearInterval(interval);
+          roulettePick = randomMovie;
+        }
+      }, 80);
+    }
+
+    function watchRoulettePick() {
+      if (roulettePick && roulettePick.youtube_url) {
+        window.open(roulettePick.youtube_url, '_blank');
+      }
+    }
+
+    // Add Movie Modal
+    function openAddMovieModal() {
+      document.getElementById('addMovieModal').classList.remove('hidden');
+    }
+
+    function closeAddMovieModal() {
+      document.getElementById('addMovieModal').classList.add('hidden');
+      document.getElementById('addMovieForm').reset();
+    }
+
+    function handleAddMovie(e) {
+      e.preventDefault();
+      const title = document.getElementById('newTitle').value.trim();
+      const year = document.getElementById('newYear').value.trim();
+      const rating = parseFloat(document.getElementById('newRating').value) || 0.0;
+      const runtime = parseInt(document.getElementById('newRuntime').value) || 0;
+      const genres = document.getElementById('newGenres').value.split(',').map(g => g.trim()).filter(g => g);
+      const poster = document.getElementById('newPoster').value.trim();
+      const youtube = document.getElementById('newYoutube').value.trim() || `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' movie')}`;
+
+      const newMovie = {
+        id: 'mov_' + Date.now(),
+        title: title,
+        year: year,
+        rating: rating,
+        runtime: runtime,
+        genre: genres.length ? genres : ['Uncategorized'],
+        poster_url: poster || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80',
+        backdrop_url: poster || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80',
+        youtube_url: youtube,
+        google_play_url: `https://play.google.com/store/search?q=${encodeURIComponent(title)}&c=movies`,
+        watched: false,
+        favorite: false,
+        tags: ['Added Manually']
+      };
+
+      movies.unshift(newMovie);
+      saveMovies();
+      populateGenreDropdown();
+      renderMovies();
+      closeAddMovieModal();
+      openDetailModal(newMovie.id);
+    }
+
+    // Data Management (Import / Export)
+    function openDataModal() {
+      document.getElementById('dataModal').classList.remove('hidden');
+    }
+
+    function closeDataModal() {
+      document.getElementById('dataModal').classList.add('hidden');
+    }
+
+    function exportLibraryJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(movies, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `cinevault_catalog_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function handleFileImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            movies = imported;
+            saveMovies();
+            populateGenreDropdown();
+            renderMovies();
+            alert(`Successfully imported ${imported.length} movies!`);
+            closeDataModal();
+          }
+        } catch (err) {
+          alert("Error parsing JSON file. Please verify format.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function handlePasteImport() {
+      const text = document.getElementById('importTextarea').value.trim();
+      if (!text) return;
+      try {
+        const imported = JSON.parse(text);
+        if (Array.isArray(imported)) {
+          movies = imported;
+          saveMovies();
+          populateGenreDropdown();
+          renderMovies();
+          alert(`Successfully imported ${imported.length} movies!`);
+          closeDataModal();
+        }
+      } catch (err) {
+        alert("Invalid JSON format. Please paste a valid array of movie objects.");
+      }
+    }
+
+    function resetToDefaultLibrary() {
+      if (confirm("Reset to default sample library? Your custom additions will be overwritten.")) {
+        movies = INITIAL_MOVIES;
+        saveMovies();
+        populateGenreDropdown();
+        renderMovies();
+        closeDataModal();
+      }
+    }
+
+    // Settings Modal
+    function openSettingsModal() {
+      document.getElementById('tmdbApiKey').value = localStorage.getItem('cinevault_tmdb_key') || '';
+      document.getElementById('settingsModal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.add('hidden');
+    }
+
+    function saveSettings() {
+      const key = document.getElementById('tmdbApiKey').value.trim();
+      localStorage.setItem('cinevault_tmdb_key', key);
+      alert("Settings saved!");
+      closeSettingsModal();
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('genreFilter').value = '';
+      document.getElementById('decadeFilter').value = '';
+      document.getElementById('minRatingFilter').value = '0';
+      document.getElementById('sortBy').value = 'rating_desc';
+      updateRatingDisplay();
+      setCategory('all');
+    }
+
+    // Search Input Listener
+    document.getElementById('searchInput').addEventListener('input', renderMovies);
+
+    // Initial Init
+    window.addEventListener('DOMContentLoaded', () => {
+      populateGenreDropdown();
+      updateCategoryCounts();
+      renderMovies();
+      setSpotlight(movies[0]);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
