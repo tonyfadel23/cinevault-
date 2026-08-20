@@ -12,53 +12,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23E11D48'/%3E%3Cpath d='M24 30h52v40H24z' fill='none' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M24 44h52M24 56h52M38 30v40M62 30v40' stroke='%23fff' stroke-width='5'/%3E%3C/svg%3E">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              300: '#fda4af', 400: '#fb7185', 500: '#f43f5e',
-              600: '#e11d48', 700: '#be123c', 900: '#881337',
-            },
-            cinema: {
-              base: '#08090F',
-              raised: '#10131F',
-              card: '#141828',
-              cardHover: '#1B2135',
-              border: '#242B42',
-              borderSoft: '#1C2236',
-              accent: '#38BDF8',
-            },
-          },
-          boxShadow: {
-            poster: '0 18px 40px -18px rgba(0, 0, 0, 0.9)',
-            glow: '0 0 0 1px rgba(244, 63, 94, 0.35), 0 18px 45px -20px rgba(244, 63, 94, 0.65)',
-          },
-          keyframes: {
-            'fade-up': {
-              '0%': { opacity: '0', transform: 'translateY(8px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            'scale-in': {
-              '0%': { opacity: '0', transform: 'scale(.96)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
-            },
-          },
-          animation: {
-            'fade-up': 'fade-up .35s ease-out both',
-            'scale-in': 'scale-in .18s ease-out both',
-          },
-        },
-      },
-    };
-  </script>
+  <!-- Compiled locally from tailwind.config.js — rebuild with `npm run build:css` -->
+  <link rel="stylesheet" href="./assets/tailwind.css">
+  <!-- Lucide 1.33.0, vendored so icons never depend on a CDN -->
+  <script src="./assets/lucide.min.js" defer></script>
 
   <style>
     :root { color-scheme: dark; }
@@ -4236,11 +4193,15 @@
        ===================================================================== */
 
     function bindEvents() {
+      let searchTimer = null;
       const onSearch = (event) => {
         searchTerm = event.target.value;
         const other = event.target.id === 'searchInput' ? 'searchInputMobile' : 'searchInput';
         $(other).value = searchTerm;
-        renderMovies();
+        // Rendering rebuilds the whole grid; debounce so big imported
+        // libraries do not re-render on every keystroke.
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(renderMovies, 120);
       };
       $('searchInput').addEventListener('input', onSearch);
       $('searchInputMobile').addEventListener('input', onSearch);

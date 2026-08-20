@@ -43,6 +43,23 @@ overwrite box). The key is stored in your browser and sent only to TMDB.
 - Keyboard shortcuts: `/` search, `R` roulette, `V` view, `F` filters, `C` clear,
   `?` help.
 
+## 🧱 No runtime CDNs
+
+The stylesheet is compiled ahead of time and the icon library is vendored, so
+the app renders correctly offline, behind strict corporate networks, and
+through ad blockers — nothing has to load from a third-party CDN. Only the
+Inter webfont comes from Google Fonts, and it degrades to the system font
+stack if unavailable.
+
+After changing any Tailwind classes in `index.html`, rebuild the stylesheet:
+
+```bash
+npm run build:css
+```
+
+The theme lives in `tailwind.config.js`; icons are Lucide 1.33.0 in
+`assets/lucide.min.js`.
+
 ## 📚 Editing the catalog
 
 `cinevault_catalog.json` is the catalog, and the same data is embedded in
