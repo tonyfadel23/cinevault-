@@ -14,11 +14,18 @@ distinctive art and nothing has to load from the network for the grid to look
 right. Remote posters that fail to load fall back to the same generated art, so
 the catalog can never show a broken image.
 
-To pull in the real thing, open **Settings**, paste a free
-[TMDB API key](https://www.themoviedb.org/settings/api) and hit **Fetch from
-TMDB**. That fills in posters, backdrops, synopses, directors, cast and trailer
-links for every title that is missing them (or all of them, if you tick the
-overwrite box). The key is stored in your browser and sent only to TMDB.
+To pull in the real thing, two options — both run entirely in your browser and
+persist in local storage:
+
+- **No key needed:** when titles are on generated art, a banner above the grid
+  offers **Fetch real posters**. It looks each film up on Wikipedia's public
+  REST API and uses the film article's poster image. No account, no setup.
+- **TMDB (most thorough):** open **Settings**, paste a free
+  [TMDB API key](https://www.themoviedb.org/settings/api) and hit **Fetch from
+  TMDB**. That fills in posters, backdrops, synopses, directors, cast and
+  trailer links for every title that is missing them (or all of them, if you
+  tick the overwrite box). The key is stored in your browser and sent only to
+  TMDB.
 
 ## 🛠 Features
 

@@ -173,6 +173,27 @@
     <!-- ============================ LIBRARY STATS ============================ -->
     <section id="statsStrip" aria-label="Library at a glance" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></section>
 
+    <!-- ============================ MISSING ARTWORK BANNER ============================ -->
+    <section id="artBanner" aria-label="Missing artwork" class="hidden items-center flex-wrap gap-3 bg-cinema-card/70 border border-brand-700/40 rounded-2xl px-4 py-3 shadow-lg backdrop-blur-sm">
+      <i data-lucide="image-off" class="w-5 h-5 text-brand-400 shrink-0"></i>
+      <p class="text-sm text-slate-300 flex-1 min-w-[16rem]">
+        <span id="artBannerCount" class="font-bold text-white">0</span> titles are showing generated placeholder art.
+        Real posters can be fetched right here — no account or key needed.
+        <span id="artBannerStatus" class="block text-[11px] text-slate-500 mt-0.5" aria-live="polite"></span>
+      </p>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="artBannerFetchBtn" onclick="fetchFreePosters()" class="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs px-4 py-2 rounded-xl transition">
+          <i data-lucide="cloud-download" class="w-3.5 h-3.5"></i> Fetch real posters
+        </button>
+        <button onclick="openSettingsModal()" class="text-xs font-semibold text-slate-400 hover:text-slate-200 px-3 py-2 rounded-xl border border-cinema-border transition">
+          Use TMDB key
+        </button>
+        <button onclick="dismissArtBanner()" title="Dismiss" aria-label="Dismiss missing artwork banner" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-200 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
     <!-- ============================ TOOLBAR ============================ -->
     <section aria-label="Filters" class="bg-cinema-card/70 border border-cinema-border rounded-2xl shadow-lg backdrop-blur-sm">
       <div class="flex items-center justify-between flex-wrap gap-3 p-3 sm:p-4 border-b border-cinema-borderSoft">
@@ -619,12 +640,15 @@
           </div>
           <p id="enrichStatus" class="text-[11px] text-slate-400"></p>
         </div>
+        <button onclick="fetchFreePosters()" class="w-full text-xs font-semibold text-slate-300 hover:text-white py-2 rounded-xl border border-cinema-border hover:border-brand-500/50 transition">
+          No key? Fetch free posters from Wikipedia instead
+        </button>
       </div>
 
       <div class="border-t border-cinema-borderSoft pt-4">
         <p class="text-[11px] text-slate-500 leading-relaxed">
-          Without a key, CineVault draws its own poster for every title from its palette, so the catalog never shows a
-          broken or duplicated image. This product uses the TMDB API but is not endorsed or certified by TMDB.
+          Without any of that, CineVault draws its own poster for every title from its palette, so the catalog never
+          shows a broken or duplicated image. This product uses the TMDB API but is not endorsed or certified by TMDB.
         </p>
       </div>
     </div>
@@ -2812,6 +2836,7 @@
       sortDir: 'desc',
       minRating: 0,
       showAdvanced: false,
+      artBannerDismissed: false,
     };
 
     /** Earlier builds stored sorting as a single string such as 'year_desc'. */
@@ -3875,6 +3900,7 @@
       populateDropdowns();
       renderMovies();
       randomizeSpotlight();
+      syncArtBanner();
       closeModal('dataModal');
       toast(`Imported ${valid.length} titles`, 'success');
     }
@@ -3912,6 +3938,7 @@
       populateDropdowns();
       renderMovies();
       randomizeSpotlight();
+      syncArtBanner();
       closeModal('dataModal');
       toast('Library reset to the shipped catalog');
     }
@@ -3987,18 +4014,34 @@
 
     async function enrichSingleMovie(movie) {
       const key = localStorage.getItem(TMDB_KEY);
+      const button = $('modalFetchArtBtn');
       if (!key) {
-        toast('Add a TMDB API key in settings first', 'error');
-        openSettingsModal();
+        // No key: a Wikipedia lookup still gets the poster, keylessly.
+        button.disabled = true;
+        button.innerText = 'Fetching…';
+        const url = await wikiPosterFor(movie);
+        button.disabled = false;
+        button.innerText = 'Fetch artwork';
+        if (url) {
+          movie.poster_url = url;
+          saveMovies();
+          renderMovies();
+          syncArtBanner();
+          openDetailModal(movie.id);
+          toast(`Found a poster for “${movie.title}”`, 'success');
+        } else {
+          toast('No poster found — a TMDB API key in settings searches more thoroughly', 'error');
+          openSettingsModal();
+        }
         return;
       }
-      const button = $('modalFetchArtBtn');
       button.disabled = true;
       button.innerText = 'Fetching…';
       try {
         const found = await fetchFromTMDB(movie, key, true);
         saveMovies();
         renderMovies();
+        syncArtBanner();
         if (found) {
           openDetailModal(movie.id);
           toast(`Updated “${movie.title}” from TMDB`, 'success');
@@ -4061,6 +4104,128 @@
       $('enrichStatus').innerText = `Updated ${matched} titles${failed ? `, ${failed} had no TMDB match` : ''}.`;
       $('artworkMissingCount').innerText = `${movies.filter((m) => !hasRealArt(m)).length} of ${movies.length} titles are still on generated artwork.`;
       toast(`Updated ${matched} titles from TMDB`, matched ? 'success' : 'error');
+      syncArtBanner();
+    }
+
+    /* =====================================================================
+       Free posters — Wikipedia
+       No key, no account: Wikipedia's REST summary endpoint is CORS-open and
+       a film article's page image is its poster. Runs in the visitor's
+       browser, so it works even though the build environment has no network.
+       ===================================================================== */
+
+    async function wikiSummary(articleTitle) {
+      const res = await fetch(
+        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(articleTitle.replace(/ /g, '_'))}`,
+      );
+      if (!res.ok) return null;
+      return res.json();
+    }
+
+    /**
+     * Accept a page only when it is clearly the film itself: a standard
+     * article (not a disambiguation page) that talks about a film and, when
+     * the article title itself does not pin the year down, mentions the
+     * movie's year — otherwise "Ice Age" would hand back a glacier.
+     */
+    function wikiPageMatches(page, movie, requireYear) {
+      if (!page || page.type !== 'standard') return false;
+      if (!page.originalimage && !page.thumbnail) return false;
+      const text = `${page.description || ''} ${page.extract || ''}`;
+      if (!/\bfilms?\b|\bmovies?\b/i.test(text)) return false;
+      if (requireYear && movie.year && !text.includes(String(movie.year))) return false;
+      return true;
+    }
+
+    async function wikiPosterFor(movie) {
+      const candidates = [];
+      if (movie.year) candidates.push({ article: `${movie.title} (${movie.year} film)`, requireYear: false });
+      candidates.push({ article: `${movie.title} (film)`, requireYear: true });
+      candidates.push({ article: movie.title, requireYear: true });
+
+      for (const candidate of candidates) {
+        try {
+          const page = await wikiSummary(candidate.article);
+          if (wikiPageMatches(page, movie, candidate.requireYear)) {
+            return (page.originalimage || page.thumbnail).source;
+          }
+        } catch (err) {
+          // Network hiccup on one candidate — the next may still land.
+        }
+      }
+      return null;
+    }
+
+    /** Progress is visible from both entry points: the banner and settings. */
+    function setFreeFetchStatus(text, pct) {
+      $('artBannerStatus').innerText = text;
+      $('enrichStatus').innerText = text;
+      if (text) $('enrichProgress').classList.remove('hidden');
+      if (typeof pct === 'number') $('enrichBar').style.width = `${pct}%`;
+    }
+
+    let freeFetchRunning = false;
+
+    async function fetchFreePosters() {
+      if (freeFetchRunning) return;
+      const targets = movies.filter((m) => !hasRealArt(m));
+      if (!targets.length) {
+        toast('Every title already has real artwork', 'success');
+        syncArtBanner();
+        return;
+      }
+
+      freeFetchRunning = true;
+      const button = $('artBannerFetchBtn');
+      button.disabled = true;
+
+      let found = 0;
+      for (let i = 0; i < targets.length; i++) {
+        const movie = targets[i];
+        setFreeFetchStatus(`${i + 1} of ${targets.length} — ${movie.title}`, Math.round(((i + 1) / targets.length) * 100));
+        const url = await wikiPosterFor(movie);
+        if (url) {
+          movie.poster_url = url;
+          found++;
+          // Paint as results land instead of making the user wait for all 40+.
+          if (found % 6 === 0) {
+            saveMovies();
+            renderMovies();
+          }
+        }
+        await sleep(150); // stay polite to Wikipedia
+      }
+
+      saveMovies();
+      renderMovies();
+      randomizeSpotlight();
+
+      const still = movies.filter((m) => !hasRealArt(m)).length;
+      setFreeFetchStatus(
+        found
+          ? `Found posters for ${found} titles${still ? `; ${still} not identified — try the TMDB fetch for those` : ''}.`
+          : 'No posters found — the TMDB fetch searches more thoroughly.',
+      );
+      $('artworkMissingCount').innerText = `${still} of ${movies.length} titles are still on generated artwork.`;
+      button.disabled = false;
+      freeFetchRunning = false;
+      toast(found ? `Found posters for ${found} titles` : 'No posters found', found ? 'success' : 'error');
+      syncArtBanner();
+    }
+
+    function syncArtBanner() {
+      const banner = $('artBanner');
+      const missing = movies.filter((m) => !hasRealArt(m)).length;
+      const show = missing > 0 && !prefs.artBannerDismissed;
+      banner.classList.toggle('hidden', !show);
+      banner.classList.toggle('flex', show);
+      $('artBannerCount').innerText = missing;
+    }
+
+    function dismissArtBanner() {
+      prefs.artBannerDismissed = true;
+      savePrefs();
+      syncArtBanner();
     }
 
     /* =====================================================================
@@ -4314,6 +4479,7 @@
       bindEvents();
       renderMovies();
       randomizeSpotlight();
+      syncArtBanner();
       drawIcons();
     });
   </script>
